@@ -1,0 +1,12 @@
+{
+  "name": "dsa-growth-garden",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A GitHub Actions-powered DSA practice garden that adds a new problem every three hours.",
+  "scripts": {
+    "plant": "node index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
