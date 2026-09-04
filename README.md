@@ -2,47 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Fibonacci
 
-**Category:** Sorting
+**Category:** Dynamic Programming
 
-**Updated:** Fri, 04 Sep 2026 12:44:30 GMT
+**Updated:** Fri, 04 Sep 2026 18:06:34 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  let prev = 0;
+  let curr = 1;
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
-    }
-
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
-    }
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
-  }
-
-  return result;
+  return curr;
 }
 ```
 
