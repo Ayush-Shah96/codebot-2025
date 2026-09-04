@@ -25,9 +25,19 @@ jobs:
         run: node index.js
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Use the repository owner's GitHub-provided noreply address
+          # so automated commits are attributed to the owner.
+          OWNER_EMAIL=$(curl -fsSL \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/${{ github.repository_owner }}" \
+            | jq -r '.id as $id | "\($id)+\(.login)@users.noreply.github.com"')
+
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "$OWNER_EMAIL"
 
           git add README.md
 
