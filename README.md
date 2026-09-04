@@ -2,28 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Fibonacci
+## 📌 Binary Tree Inorder Traversal
 
-**Category:** Dynamic Programming
+**Category:** Binary Tree
 
-**Updated:** Fri, 04 Sep 2026 18:06:34 GMT
+**Updated:** Fri, 04 Sep 2026 22:47:15 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function fibonacci(n) {
-  if (n <= 1) return n;
+function inorderTraversal(root) {
+  const result = [];
 
-  let prev = 0;
-  let curr = 1;
+  function traverse(node) {
+    if (!node) return;
 
-  for (let i = 2; i <= n; i++) {
-    const next = prev + curr;
-    prev = curr;
-    curr = next;
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
   }
 
-  return curr;
+  traverse(root);
+
+  return result;
 }
 ```
 
