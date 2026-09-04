@@ -1,133 +1,79 @@
-# 🌳 DSA Growth Garden
+# 🧠 DSA Algorithm of the Moment
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:22c55e&height=180&section=header&text=DSA%20Growth%20Garden&fontColor=ffffff&fontSize=38&fontAlignY=35&desc=One%20problem%20every%203%20hours&descAlignY=60&descSize=18" alt="DSA Growth Garden banner">
-</p>
+> Automatically updated every 3 hours 🤖
 
-<p align="center">
-  <strong>🌱 Learn a little. Solve a problem. Grow every day.</strong>
-</p>
+## 📌 Heap Sort
 
-<p align="center">
-  <img src="https://img.shields.io/badge/DSA-Practice-22c55e?style=for-the-badge" alt="DSA practice">
-  <img src="https://img.shields.io/badge/Updates-Every%203%20Hours-0f172a?style=for-the-badge" alt="Every 3 hours">
-  <img src="https://img.shields.io/badge/Node.js-20-3b82f6?style=for-the-badge" alt="Node.js 20">
-  <img src="https://img.shields.io/badge/GitHub%20Actions-Automated-8b5cf6?style=for-the-badge" alt="GitHub Actions">
-</p>
+**Category:** Sorting
+
+**Updated:** Fri, 04 Sep 2026 12:44:30 GMT
+
+### 💻 JavaScript Implementation
+
+```javascript
+function heapSort(arr) {
+  const result = [...arr];
+
+  function heapify(n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
+
+    if (left < n && result[left] > result[largest]) {
+      largest = left;
+    }
+
+    if (right < n && result[right] > result[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      [result[i], result[largest]] = [result[largest], result[i]];
+      heapify(n, largest);
+    }
+  }
+
+  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
+    heapify(result.length, i);
+  }
+
+  for (let i = result.length - 1; i > 0; i--) {
+    [result[0], result[i]] = [result[i], result[0]];
+    heapify(i, 0);
+  }
+
+  return result;
+}
+```
 
 ---
 
-## ✨ What is this?
+### 📚 Algorithms in Rotation
 
-This repository is a small **automated DSA practice garden**.
-
-Every **3 hours**, GitHub Actions runs the Node.js script, picks the next problem from the DSA library, and adds it to this README.
-
-The goal is simple:
-
-> **Consistency beats cramming. 🌱**
-
-## 🧭 How the garden works
-
-```text
-┌─────────────────────┐
-│ GitHub Actions      │
-│ Every 3 hours       │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ index.js            │
-│ Pick next DSA task  │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ README.md           │
-│ Add problem history │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Git commit + push   │
-│ 🌱 Keep growing     │
-└─────────────────────┘
-```
-
-## 📚 Your practice loop
-
-**1. Understand** → **2. Solve** → **3. Optimize** → **4. Test** → **5. Explain**
-
-For every problem, try to write down:
-
-- Approach
-- Time complexity
-- Space complexity
-- Edge cases
-- One alternative solution
-
-## 🌿 Problem History
-
-<!-- DSA_HISTORY -->
+1. Binary Search — Searching
+2. Bubble Sort — Sorting
+3. Selection Sort — Sorting
+4. Insertion Sort — Sorting
+5. Merge Sort — Sorting
+6. Quick Sort — Sorting
+7. Heap Sort — Sorting
+8. Depth First Search — Graph Traversal
+9. Breadth First Search — Graph Traversal
+10. Dijkstra's Algorithm — Graph
+11. Fibonacci — Dynamic Programming
+12. Kadane's Algorithm — Arrays
+13. Two Sum — Arrays
+14. Sliding Window — Arrays
+15. Valid Parentheses — Stack
+16. Reverse Linked List — Linked List
+17. Detect Cycle in Linked List — Linked List
+18. Binary Tree Inorder Traversal — Binary Tree
+19. Binary Tree Level Order Traversal — Binary Tree
+20. Greatest Common Divisor — Math
+21. Sieve of Eratosthenes — Math
+22. Topological Sort — Graph
+23. Union Find — Disjoint Set
 
 ---
 
-## 🛠️ Run it locally
-
-```bash
-node index.js
-```
-
-Or:
-
-```bash
-npm run plant
-```
-
-The script updates:
-
-- `README.md` — problem history
-- `.dsa-state.json` — remembers which problem comes next
-
-## ⚙️ Automation
-
-The workflow lives in:
-
-```text
-.github/workflows/CI.yml
-```
-
-It is scheduled with:
-
-```yaml
-- cron: "0 */3 * * *"
-```
-
-That means GitHub schedules a run every three hours using UTC.
-
-You can also start it manually from the **Actions** tab.
-
-## 🌱 Philosophy
-
-You do not need to solve 100 problems in one weekend.
-
-Solve **one**, understand **one**, and come back for the next.
-
-<details>
-<summary><strong>🚀 Keep growing</strong></summary>
-
-```text
-🌱 Problem solved
-   ↓
-🌿 Concept understood
-   ↓
-🌳 Pattern recognized
-   ↓
-🌲 Interview confidence
-```
-
-</details>
-
-<p align="center">
-  Made with JavaScript, GitHub Actions, and a little persistence. 💚
-</p>
+⭐ **Keep learning. Keep solving. Keep coding.**
