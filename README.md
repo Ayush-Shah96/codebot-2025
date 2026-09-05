@@ -2,29 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Sliding Window
 
-**Category:** Linked List
+**Category:** Arrays
 
-**Updated:** Sat, 05 Sep 2026 09:59:48 GMT
+**Updated:** Sat, 05 Sep 2026 14:38:39 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function maxSumSubarray(arr, k) {
+  if (arr.length < k) return null;
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  let windowSum = 0;
 
-    if (slow === fast) {
-      return true;
-    }
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
 
-  return false;
+  let maximum = windowSum;
+
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maximum = Math.max(maximum, windowSum);
+  }
+
+  return maximum;
 }
 ```
 
