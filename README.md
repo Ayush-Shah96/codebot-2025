@@ -2,29 +2,25 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Kadane's Algorithm
 
-**Category:** Binary Tree
+**Category:** Arrays
 
-**Updated:** Fri, 04 Sep 2026 22:47:15 GMT
+**Updated:** Sat, 05 Sep 2026 03:04:49 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
+function maxSubarraySum(arr) {
+  let current = arr[0];
+  let maximum = arr[0];
 
-  function traverse(node) {
-    if (!node) return;
-
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+  for (let i = 1; i < arr.length; i++) {
+    current = Math.max(arr[i], current + arr[i]);
+    maximum = Math.max(maximum, current);
   }
 
-  traverse(root);
-
-  return result;
+  return maximum;
 }
 ```
 
