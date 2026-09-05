@@ -2,25 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Kadane's Algorithm
+## 📌 Detect Cycle in Linked List
 
-**Category:** Arrays
+**Category:** Linked List
 
-**Updated:** Sat, 05 Sep 2026 03:04:49 GMT
+**Updated:** Sat, 05 Sep 2026 09:59:48 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSubarraySum(arr) {
-  let current = arr[0];
-  let maximum = arr[0];
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  for (let i = 1; i < arr.length; i++) {
-    current = Math.max(arr[i], current + arr[i]);
-    maximum = Math.max(maximum, current);
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      return true;
+    }
   }
 
-  return maximum;
+  return false;
 }
 ```
 
