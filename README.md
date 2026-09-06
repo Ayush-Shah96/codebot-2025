@@ -2,40 +2,38 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Sorting
+**Category:** Binary Tree
 
-**Updated:** Sun, 06 Sep 2026 20:01:31 GMT
+**Updated:** Sun, 06 Sep 2026 22:42:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function levelOrder(root) {
+  if (!root) return [];
 
-  const mid = Math.floor(arr.length / 2);
-
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-
-  return merge(left, right);
-}
-
-function merge(left, right) {
   const result = [];
-  let i = 0;
-  let j = 0;
+  const queue = [root];
 
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
+
+    result.push(level);
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  return result;
 }
 ```
 
