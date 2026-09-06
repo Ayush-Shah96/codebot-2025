@@ -2,28 +2,40 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Reverse Linked List
+## 📌 Merge Sort
 
-**Category:** Linked List
+**Category:** Sorting
 
-**Updated:** Sun, 06 Sep 2026 17:34:33 GMT
+**Updated:** Sun, 06 Sep 2026 20:01:31 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function reverseLinkedList(head) {
-  let previous = null;
-  let current = head;
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  while (current !== null) {
-    const next = current.next;
+  const mid = Math.floor(arr.length / 2);
 
-    current.next = previous;
-    previous = current;
-    current = next;
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  const result = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
+    }
   }
 
-  return previous;
+  return [...result, ...left.slice(i), ...right.slice(j)];
 }
 ```
 
