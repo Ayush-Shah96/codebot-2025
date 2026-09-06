@@ -2,32 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Topological Sort
 
-**Category:** Searching
+**Category:** Graph
 
-**Updated:** Sat, 05 Sep 2026 22:38:46 GMT
+**Updated:** Sun, 06 Sep 2026 03:04:34 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  function dfs(node) {
+    if (visited.has(node)) return;
 
-    if (arr[mid] === target) return mid;
+    visited.add(node);
 
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
     }
+
+    result.push(node);
   }
 
-  return -1;
+  for (const node in graph) {
+    dfs(node);
+  }
+
+  return result.reverse();
 }
 ```
 
