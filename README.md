@@ -2,38 +2,34 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Level Order Traversal
+## 📌 Valid Parentheses
 
-**Category:** Binary Tree
+**Category:** Stack
 
-**Updated:** Sun, 06 Sep 2026 22:42:20 GMT
+**Updated:** Mon, 07 Sep 2026 03:02:18 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function levelOrder(root) {
-  if (!root) return [];
+function isValid(s) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
 
-  const result = [];
-  const queue = [root];
-
-  while (queue.length > 0) {
-    const levelSize = queue.length;
-    const level = [];
-
-    for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift();
-
-      level.push(node.value);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+  for (const char of s) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) {
+        return false;
+      }
     }
-
-    result.push(level);
   }
 
-  return result;
+  return stack.length === 0;
 }
 ```
 
