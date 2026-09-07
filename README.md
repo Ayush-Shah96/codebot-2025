@@ -2,34 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Reverse Linked List
 
-**Category:** Stack
+**Category:** Linked List
 
-**Updated:** Mon, 07 Sep 2026 03:02:18 GMT
+**Updated:** Mon, 07 Sep 2026 11:39:18 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
-    } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
-    }
+  while (current !== null) {
+    const next = current.next;
+
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  return stack.length === 0;
+  return previous;
 }
 ```
 
