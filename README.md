@@ -2,31 +2,34 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Selection Sort
+## 📌 Valid Parentheses
 
-**Category:** Sorting
+**Category:** Stack
 
-**Updated:** Mon, 07 Sep 2026 17:17:47 GMT
+**Updated:** Mon, 07 Sep 2026 21:08:54 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function selectionSort(arr) {
-  const result = [...arr];
+function isValid(s) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
 
-  for (let i = 0; i < result.length; i++) {
-    let minIndex = i;
-
-    for (let j = i + 1; j < result.length; j++) {
-      if (result[j] < result[minIndex]) {
-        minIndex = j;
+  for (const char of s) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) {
+        return false;
       }
     }
-
-    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return result;
+  return stack.length === 0;
 }
 ```
 
