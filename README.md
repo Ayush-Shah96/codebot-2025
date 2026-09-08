@@ -2,32 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Depth First Search
 
-**Category:** Math
+**Category:** Graph Traversal
 
-**Updated:** Tue, 08 Sep 2026 03:12:39 GMT
+**Updated:** Tue, 08 Sep 2026 10:38:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  visited.add(start);
+  console.log(start);
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
-    }
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
-
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
 }
 ```
 
