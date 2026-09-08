@@ -2,31 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Reverse Linked List
 
-**Category:** Sorting
+**Category:** Linked List
 
-**Updated:** Tue, 08 Sep 2026 20:44:57 GMT
+**Updated:** Tue, 08 Sep 2026 23:12:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
-  const result = [...arr];
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
+  while (current !== null) {
+    const next = current.next;
 
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
-    }
-
-    result[j + 1] = current;
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  return result;
+  return previous;
 }
 ```
 
