@@ -2,27 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Bubble Sort
+## 📌 Fibonacci
 
-**Category:** Sorting
+**Category:** Dynamic Programming
 
-**Updated:** Wed, 09 Sep 2026 10:48:52 GMT
+**Updated:** Wed, 09 Sep 2026 15:57:40 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bubbleSort(arr) {
-  const result = [...arr];
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
-      }
-    }
+  let prev = 0;
+  let curr = 1;
+
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  return result;
+  return curr;
 }
 ```
 
