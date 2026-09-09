@@ -2,25 +2,27 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Kadane's Algorithm
+## 📌 Bubble Sort
 
-**Category:** Arrays
+**Category:** Sorting
 
-**Updated:** Wed, 09 Sep 2026 03:14:46 GMT
+**Updated:** Wed, 09 Sep 2026 10:48:52 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSubarraySum(arr) {
-  let current = arr[0];
-  let maximum = arr[0];
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  for (let i = 1; i < arr.length; i++) {
-    current = Math.max(arr[i], current + arr[i]);
-    maximum = Math.max(maximum, current);
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
+    }
   }
 
-  return maximum;
+  return result;
 }
 ```
 
