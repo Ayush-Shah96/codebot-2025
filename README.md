@@ -2,52 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Quick Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Wed, 09 Sep 2026 20:28:02 GMT
+**Updated:** Wed, 09 Sep 2026 22:56:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  for (const node in graph) {
-    distances[node] = Infinity;
-  }
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
 
-  distances[start] = 0;
-
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
-
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
-      }
-    }
-
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
   }
 
-  return distances;
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
