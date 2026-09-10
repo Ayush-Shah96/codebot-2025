@@ -2,21 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Selection Sort
 
-**Category:** Math
+**Category:** Sorting
 
-**Updated:** Thu, 10 Sep 2026 10:40:57 GMT
+**Updated:** Thu, 10 Sep 2026 15:52:22 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function selectionSort(arr) {
+  const result = [...arr];
+
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
+
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
+      }
+    }
+
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return Math.abs(a);
+  return result;
 }
 ```
 
