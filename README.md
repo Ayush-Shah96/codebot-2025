@@ -2,29 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Greatest Common Divisor
 
-**Category:** Linked List
+**Category:** Math
 
-**Updated:** Thu, 10 Sep 2026 20:27:13 GMT
+**Updated:** Thu, 10 Sep 2026 22:56:07 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
-
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-
-    if (slow === fast) {
-      return true;
-    }
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  return false;
+  return Math.abs(a);
 }
 ```
 
