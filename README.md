@@ -2,31 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Selection Sort
+## 📌 Detect Cycle in Linked List
 
-**Category:** Sorting
+**Category:** Linked List
 
-**Updated:** Thu, 10 Sep 2026 15:52:22 GMT
+**Updated:** Thu, 10 Sep 2026 20:27:13 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function selectionSort(arr) {
-  const result = [...arr];
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  for (let i = 0; i < result.length; i++) {
-    let minIndex = i;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
 
-    for (let j = i + 1; j < result.length; j++) {
-      if (result[j] < result[minIndex]) {
-        minIndex = j;
-      }
+    if (slow === fast) {
+      return true;
     }
-
-    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return result;
+  return false;
 }
 ```
 
