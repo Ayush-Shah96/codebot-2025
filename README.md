@@ -2,31 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Binary Tree Inorder Traversal
 
-**Category:** Sorting
+**Category:** Binary Tree
 
-**Updated:** Wed, 09 Sep 2026 22:56:20 GMT
+**Updated:** Thu, 10 Sep 2026 03:14:03 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function inorderTraversal(root) {
+  const result = [];
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
+  function traverse(node) {
+    if (!node) return;
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  traverse(root);
+
+  return result;
 }
 ```
 
