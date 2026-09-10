@@ -2,29 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Greatest Common Divisor
 
-**Category:** Binary Tree
+**Category:** Math
 
-**Updated:** Thu, 10 Sep 2026 03:14:03 GMT
+**Updated:** Thu, 10 Sep 2026 10:40:57 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
-
-  function traverse(node) {
-    if (!node) return;
-
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  traverse(root);
-
-  return result;
+  return Math.abs(a);
 }
 ```
 
