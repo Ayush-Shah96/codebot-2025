@@ -2,47 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Quick Sort
 
 **Category:** Sorting
 
-**Updated:** Fri, 11 Sep 2026 03:09:06 GMT
+**Updated:** Fri, 11 Sep 2026 10:40:25 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
-    }
-
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
   }
 
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
-  }
-
-  return result;
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
