@@ -2,52 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Selection Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Fri, 11 Sep 2026 15:55:01 GMT
+**Updated:** Fri, 11 Sep 2026 20:29:35 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function selectionSort(arr) {
+  const result = [...arr];
 
-  for (const node in graph) {
-    distances[node] = Infinity;
-  }
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
 
-  distances[start] = 0;
-
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
-
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
       }
     }
 
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
-    }
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return distances;
+  return result;
 }
 ```
 
