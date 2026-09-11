@@ -2,21 +2,47 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Heap Sort
 
-**Category:** Math
+**Category:** Sorting
 
-**Updated:** Thu, 10 Sep 2026 22:56:07 GMT
+**Updated:** Fri, 11 Sep 2026 03:09:06 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function heapSort(arr) {
+  const result = [...arr];
+
+  function heapify(n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
+
+    if (left < n && result[left] > result[largest]) {
+      largest = left;
+    }
+
+    if (right < n && result[right] > result[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      [result[i], result[largest]] = [result[largest], result[i]];
+      heapify(n, largest);
+    }
   }
 
-  return Math.abs(a);
+  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
+    heapify(result.length, i);
+  }
+
+  for (let i = result.length - 1; i > 0; i--) {
+    [result[0], result[i]] = [result[i], result[0]];
+    heapify(i, 0);
+  }
+
+  return result;
 }
 ```
 
