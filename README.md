@@ -2,31 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Selection Sort
+## 📌 Fibonacci
 
-**Category:** Sorting
+**Category:** Dynamic Programming
 
-**Updated:** Fri, 11 Sep 2026 20:29:35 GMT
+**Updated:** Fri, 11 Sep 2026 22:59:12 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function selectionSort(arr) {
-  const result = [...arr];
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  for (let i = 0; i < result.length; i++) {
-    let minIndex = i;
+  let prev = 0;
+  let curr = 1;
 
-    for (let j = i + 1; j < result.length; j++) {
-      if (result[j] < result[minIndex]) {
-        minIndex = j;
-      }
-    }
-
-    [result[i], result[minIndex]] = [result[minIndex], result[i]];
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  return result;
+  return curr;
 }
 ```
 
