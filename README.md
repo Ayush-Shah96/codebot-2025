@@ -2,31 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Breadth First Search
+## 📌 Selection Sort
 
-**Category:** Graph Traversal
+**Category:** Sorting
 
-**Updated:** Sat, 12 Sep 2026 10:09:00 GMT
+**Updated:** Sat, 12 Sep 2026 15:02:00 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bfs(graph, start) {
-  const queue = [start];
-  const visited = new Set([start]);
+function selectionSort(arr) {
+  const result = [...arr];
 
-  while (queue.length > 0) {
-    const node = queue.shift();
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
 
-    console.log(node);
-
-    for (const neighbor of graph[node]) {
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push(neighbor);
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
       }
     }
+
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
+
+  return result;
 }
 ```
 
