@@ -2,31 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Selection Sort
+## 📌 Binary Search
 
-**Category:** Sorting
+**Category:** Searching
 
-**Updated:** Sat, 12 Sep 2026 15:02:00 GMT
+**Updated:** Sat, 12 Sep 2026 20:12:49 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function selectionSort(arr) {
-  const result = [...arr];
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  for (let i = 0; i < result.length; i++) {
-    let minIndex = i;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
 
-    for (let j = i + 1; j < result.length; j++) {
-      if (result[j] < result[minIndex]) {
-        minIndex = j;
-      }
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
     }
-
-    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return result;
+  return -1;
 }
 ```
 
