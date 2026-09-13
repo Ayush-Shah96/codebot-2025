@@ -2,31 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Fibonacci
 
-**Category:** Sorting
+**Category:** Dynamic Programming
 
-**Updated:** Sun, 13 Sep 2026 11:08:27 GMT
+**Updated:** Sun, 13 Sep 2026 15:39:47 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
-  const result = [...arr];
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
+  let prev = 0;
+  let curr = 1;
 
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
-    }
-
-    result[j + 1] = current;
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  return result;
+  return curr;
 }
 ```
 
