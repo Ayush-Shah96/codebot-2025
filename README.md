@@ -2,28 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Fibonacci
+## 📌 Reverse Linked List
 
-**Category:** Dynamic Programming
+**Category:** Linked List
 
-**Updated:** Sun, 13 Sep 2026 15:39:47 GMT
+**Updated:** Sun, 13 Sep 2026 20:21:56 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function fibonacci(n) {
-  if (n <= 1) return n;
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
 
-  let prev = 0;
-  let curr = 1;
+  while (current !== null) {
+    const next = current.next;
 
-  for (let i = 2; i <= n; i++) {
-    const next = prev + curr;
-    prev = curr;
-    curr = next;
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  return curr;
+  return previous;
 }
 ```
 
