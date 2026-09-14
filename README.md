@@ -2,40 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Sliding Window
 
-**Category:** Sorting
+**Category:** Arrays
 
-**Updated:** Mon, 14 Sep 2026 03:31:09 GMT
+**Updated:** Mon, 14 Sep 2026 11:53:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function maxSumSubarray(arr, k) {
+  if (arr.length < k) return null;
 
-  const mid = Math.floor(arr.length / 2);
+  let windowSum = 0;
 
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
-    }
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  let maximum = windowSum;
+
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maximum = Math.max(maximum, windowSum);
+  }
+
+  return maximum;
 }
 ```
 
