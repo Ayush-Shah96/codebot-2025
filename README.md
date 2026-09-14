@@ -2,27 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Bubble Sort
+## 📌 Sieve of Eratosthenes
 
-**Category:** Sorting
+**Category:** Math
 
-**Updated:** Mon, 14 Sep 2026 17:45:12 GMT
+**Updated:** Mon, 14 Sep 2026 21:31:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bubbleSort(arr) {
-  const result = [...arr];
+function findPrimes(n) {
+  const isPrime = Array(n + 1).fill(true);
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+  isPrime[0] = false;
+  isPrime[1] = false;
+
+  for (let i = 2; i * i <= n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= n; j += i) {
+        isPrime[j] = false;
       }
     }
   }
 
-  return result;
+  return isPrime
+    .map((value, index) => (value ? index : null))
+    .filter(value => value !== null);
 }
 ```
 
