@@ -2,21 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Sliding Window
 
-**Category:** Math
+**Category:** Arrays
 
-**Updated:** Tue, 15 Sep 2026 11:08:46 GMT
+**Updated:** Tue, 15 Sep 2026 16:19:37 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function maxSumSubarray(arr, k) {
+  if (arr.length < k) return null;
+
+  let windowSum = 0;
+
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
 
-  return Math.abs(a);
+  let maximum = windowSum;
+
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maximum = Math.max(maximum, windowSum);
+  }
+
+  return maximum;
 }
 ```
 
