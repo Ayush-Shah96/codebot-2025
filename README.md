@@ -2,29 +2,47 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Heap Sort
 
-**Category:** Linked List
+**Category:** Sorting
 
-**Updated:** Wed, 16 Sep 2026 16:11:31 GMT
+**Updated:** Wed, 16 Sep 2026 20:54:13 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function heapSort(arr) {
+  const result = [...arr];
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  function heapify(n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
 
-    if (slow === fast) {
-      return true;
+    if (left < n && result[left] > result[largest]) {
+      largest = left;
+    }
+
+    if (right < n && result[right] > result[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      [result[i], result[largest]] = [result[largest], result[i]];
+      heapify(n, largest);
     }
   }
 
-  return false;
+  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
+    heapify(result.length, i);
+  }
+
+  for (let i = result.length - 1; i > 0; i--) {
+    [result[0], result[i]] = [result[i], result[0]];
+    heapify(i, 0);
+  }
+
+  return result;
 }
 ```
 
