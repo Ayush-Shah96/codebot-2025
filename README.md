@@ -2,28 +2,25 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Reverse Linked List
+## 📌 Kadane's Algorithm
 
-**Category:** Linked List
+**Category:** Arrays
 
-**Updated:** Wed, 16 Sep 2026 03:28:11 GMT
+**Updated:** Wed, 16 Sep 2026 10:53:42 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function reverseLinkedList(head) {
-  let previous = null;
-  let current = head;
+function maxSubarraySum(arr) {
+  let current = arr[0];
+  let maximum = arr[0];
 
-  while (current !== null) {
-    const next = current.next;
-
-    current.next = previous;
-    previous = current;
-    current = next;
+  for (let i = 1; i < arr.length; i++) {
+    current = Math.max(arr[i], current + arr[i]);
+    maximum = Math.max(maximum, current);
   }
 
-  return previous;
+  return maximum;
 }
 ```
 
