@@ -2,44 +2,35 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Sorting
+**Category:** Binary Tree
 
-**Updated:** Wed, 16 Sep 2026 20:54:13 GMT
+**Updated:** Wed, 16 Sep 2026 23:32:48 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function levelOrder(root) {
+  if (!root) return [];
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  const result = [];
+  const queue = [root];
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
 
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
-    }
-  }
-
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
+    result.push(level);
   }
 
   return result;
