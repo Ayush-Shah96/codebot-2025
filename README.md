@@ -2,36 +2,27 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Level Order Traversal
+## 📌 Binary Tree Inorder Traversal
 
 **Category:** Binary Tree
 
-**Updated:** Wed, 16 Sep 2026 23:32:48 GMT
+**Updated:** Thu, 17 Sep 2026 03:34:06 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function levelOrder(root) {
-  if (!root) return [];
-
+function inorderTraversal(root) {
   const result = [];
-  const queue = [root];
 
-  while (queue.length > 0) {
-    const levelSize = queue.length;
-    const level = [];
+  function traverse(node) {
+    if (!node) return;
 
-    for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift();
-
-      level.push(node.value);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-
-    result.push(level);
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
   }
+
+  traverse(root);
 
   return result;
 }
