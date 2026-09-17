@@ -2,29 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Dijkstra's Algorithm
 
-**Category:** Binary Tree
+**Category:** Graph
 
-**Updated:** Thu, 17 Sep 2026 03:34:06 GMT
+**Updated:** Thu, 17 Sep 2026 11:01:15 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  function traverse(node) {
-    if (!node) return;
-
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+  for (const node in graph) {
+    distances[node] = Infinity;
   }
 
-  traverse(root);
+  distances[start] = 0;
 
-  return result;
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
+      }
+    }
+  }
+
+  return distances;
 }
 ```
 
