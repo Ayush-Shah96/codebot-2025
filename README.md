@@ -2,52 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Insertion Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Thu, 17 Sep 2026 11:01:15 GMT
+**Updated:** Thu, 17 Sep 2026 16:17:45 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function insertionSort(arr) {
+  const result = [...arr];
 
-  for (const node in graph) {
-    distances[node] = Infinity;
-  }
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
 
-  distances[start] = 0;
-
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
-
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
-      }
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
     }
 
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
-    }
+    result[j + 1] = current;
   }
 
-  return distances;
+  return result;
 }
 ```
 
