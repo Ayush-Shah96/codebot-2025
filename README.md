@@ -2,28 +2,44 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Heap Sort
 
 **Category:** Sorting
 
-**Updated:** Fri, 18 Sep 2026 03:19:46 GMT
+**Updated:** Fri, 18 Sep 2026 10:37:33 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
+function heapSort(arr) {
   const result = [...arr];
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
+  function heapify(n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
 
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
+    if (left < n && result[left] > result[largest]) {
+      largest = left;
     }
 
-    result[j + 1] = current;
+    if (right < n && result[right] > result[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      [result[i], result[largest]] = [result[largest], result[i]];
+      heapify(n, largest);
+    }
+  }
+
+  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
+    heapify(result.length, i);
+  }
+
+  for (let i = result.length - 1; i > 0; i--) {
+    [result[0], result[i]] = [result[i], result[0]];
+    heapify(i, 0);
   }
 
   return result;
