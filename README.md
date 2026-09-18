@@ -2,29 +2,40 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Merge Sort
 
-**Category:** Linked List
+**Category:** Sorting
 
-**Updated:** Fri, 18 Sep 2026 20:27:16 GMT
+**Updated:** Fri, 18 Sep 2026 23:01:46 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  const mid = Math.floor(arr.length / 2);
 
-    if (slow === fast) {
-      return true;
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  const result = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
     }
   }
 
-  return false;
+  return [...result, ...left.slice(i), ...right.slice(j)];
 }
 ```
 
