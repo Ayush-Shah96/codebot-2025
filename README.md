@@ -2,40 +2,27 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Bubble Sort
 
 **Category:** Sorting
 
-**Updated:** Fri, 18 Sep 2026 23:01:46 GMT
+**Updated:** Sat, 19 Sep 2026 03:16:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  const mid = Math.floor(arr.length / 2);
-
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
     }
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  return result;
 }
 ```
 
