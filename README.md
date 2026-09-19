@@ -2,27 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Bubble Sort
+## 📌 Dijkstra's Algorithm
 
-**Category:** Sorting
+**Category:** Graph
 
-**Updated:** Sat, 19 Sep 2026 20:05:42 GMT
+**Updated:** Sat, 19 Sep 2026 22:41:03 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bubbleSort(arr) {
-  const result = [...arr];
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+  for (const node in graph) {
+    distances[node] = Infinity;
+  }
+
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
       }
     }
   }
 
-  return result;
+  return distances;
 }
 ```
 
