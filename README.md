@@ -2,52 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Depth First Search
 
-**Category:** Graph
+**Category:** Graph Traversal
 
-**Updated:** Sat, 19 Sep 2026 22:41:03 GMT
+**Updated:** Sun, 20 Sep 2026 03:33:34 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  for (const node in graph) {
-    distances[node] = Infinity;
+  visited.add(start);
+  console.log(start);
+
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
-
-  distances[start] = 0;
-
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
-
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
-      }
-    }
-
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
-    }
-  }
-
-  return distances;
 }
 ```
 
