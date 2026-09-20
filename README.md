@@ -2,36 +2,40 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Topological Sort
+## 📌 Merge Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Sun, 20 Sep 2026 10:40:51 GMT
+**Updated:** Sun, 20 Sep 2026 15:29:56 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function topologicalSort(graph) {
-  const visited = new Set();
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const mid = Math.floor(arr.length / 2);
+
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
   const result = [];
+  let i = 0;
+  let j = 0;
 
-  function dfs(node) {
-    if (visited.has(node)) return;
-
-    visited.add(node);
-
-    for (const neighbor of graph[node] || []) {
-      dfs(neighbor);
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
     }
-
-    result.push(node);
   }
 
-  for (const node in graph) {
-    dfs(node);
-  }
-
-  return result.reverse();
+  return [...result, ...left.slice(i), ...right.slice(j)];
 }
 ```
 
