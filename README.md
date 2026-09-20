@@ -2,24 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Depth First Search
+## 📌 Topological Sort
 
-**Category:** Graph Traversal
+**Category:** Graph
 
-**Updated:** Sun, 20 Sep 2026 03:33:34 GMT
+**Updated:** Sun, 20 Sep 2026 10:40:51 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dfs(graph, start, visited = new Set()) {
-  if (visited.has(start)) return;
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  visited.add(start);
-  console.log(start);
+  function dfs(node) {
+    if (visited.has(node)) return;
 
-  for (const neighbor of graph[start]) {
-    dfs(graph, neighbor, visited);
+    visited.add(node);
+
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
+    }
+
+    result.push(node);
   }
+
+  for (const node in graph) {
+    dfs(node);
+  }
+
+  return result.reverse();
 }
 ```
 
