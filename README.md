@@ -2,29 +2,46 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Union Find
 
-**Category:** Arrays
+**Category:** Disjoint Set
 
-**Updated:** Sun, 20 Sep 2026 20:22:04 GMT
+**Updated:** Sun, 20 Sep 2026 22:59:36 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
-
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
-
-    if (map.has(complement)) {
-      return [map.get(complement), i];
-    }
-
-    map.set(nums[i], i);
+class UnionFind {
+  constructor(n) {
+    this.parent = Array.from({ length: n }, (_, i) => i);
+    this.rank = Array(n).fill(0);
   }
 
-  return [];
+  find(x) {
+    if (this.parent[x] !== x) {
+      this.parent[x] = this.find(this.parent[x]);
+    }
+
+    return this.parent[x];
+  }
+
+  union(a, b) {
+    const rootA = this.find(a);
+    const rootB = this.find(b);
+
+    if (rootA === rootB) return false;
+
+    if (this.rank[rootA] < this.rank[rootB]) {
+      this.parent[rootA] = rootB;
+    } else if (this.rank[rootA] > this.rank[rootB]) {
+      this.parent[rootB] = rootA;
+    } else {
+      this.parent[rootB] = rootA;
+      this.rank[rootA]++;
+    }
+
+    return true;
+  }
 }
 ```
 
