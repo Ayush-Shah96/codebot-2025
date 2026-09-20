@@ -2,40 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Two Sum
 
-**Category:** Sorting
+**Category:** Arrays
 
-**Updated:** Sun, 20 Sep 2026 15:29:56 GMT
+**Updated:** Sun, 20 Sep 2026 20:22:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function twoSum(nums, target) {
+  const map = new Map();
 
-  const mid = Math.floor(arr.length / 2);
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
 
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
+    if (map.has(complement)) {
+      return [map.get(complement), i];
     }
+
+    map.set(nums[i], i);
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  return [];
 }
 ```
 
