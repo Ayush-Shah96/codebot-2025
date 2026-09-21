@@ -2,46 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Union Find
+## 📌 Topological Sort
 
-**Category:** Disjoint Set
+**Category:** Graph
 
-**Updated:** Mon, 21 Sep 2026 19:51:52 GMT
+**Updated:** Mon, 21 Sep 2026 23:49:44 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-class UnionFind {
-  constructor(n) {
-    this.parent = Array.from({ length: n }, (_, i) => i);
-    this.rank = Array(n).fill(0);
-  }
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  find(x) {
-    if (this.parent[x] !== x) {
-      this.parent[x] = this.find(this.parent[x]);
+  function dfs(node) {
+    if (visited.has(node)) return;
+
+    visited.add(node);
+
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
     }
 
-    return this.parent[x];
+    result.push(node);
   }
 
-  union(a, b) {
-    const rootA = this.find(a);
-    const rootB = this.find(b);
-
-    if (rootA === rootB) return false;
-
-    if (this.rank[rootA] < this.rank[rootB]) {
-      this.parent[rootA] = rootB;
-    } else if (this.rank[rootA] > this.rank[rootB]) {
-      this.parent[rootB] = rootA;
-    } else {
-      this.parent[rootB] = rootA;
-      this.rank[rootA]++;
-    }
-
-    return true;
+  for (const node in graph) {
+    dfs(node);
   }
+
+  return result.reverse();
 }
 ```
 
