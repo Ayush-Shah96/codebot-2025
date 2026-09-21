@@ -2,21 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Insertion Sort
 
-**Category:** Math
+**Category:** Sorting
 
-**Updated:** Mon, 21 Sep 2026 03:28:11 GMT
+**Updated:** Mon, 21 Sep 2026 12:04:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function insertionSort(arr) {
+  const result = [...arr];
+
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
+
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
+    }
+
+    result[j + 1] = current;
   }
 
-  return Math.abs(a);
+  return result;
 }
 ```
 
