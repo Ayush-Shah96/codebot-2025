@@ -2,46 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Union Find
+## 📌 Greatest Common Divisor
 
-**Category:** Disjoint Set
+**Category:** Math
 
-**Updated:** Sun, 20 Sep 2026 22:59:36 GMT
+**Updated:** Mon, 21 Sep 2026 03:28:11 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-class UnionFind {
-  constructor(n) {
-    this.parent = Array.from({ length: n }, (_, i) => i);
-    this.rank = Array(n).fill(0);
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  find(x) {
-    if (this.parent[x] !== x) {
-      this.parent[x] = this.find(this.parent[x]);
-    }
-
-    return this.parent[x];
-  }
-
-  union(a, b) {
-    const rootA = this.find(a);
-    const rootB = this.find(b);
-
-    if (rootA === rootB) return false;
-
-    if (this.rank[rootA] < this.rank[rootB]) {
-      this.parent[rootA] = rootB;
-    } else if (this.rank[rootA] > this.rank[rootB]) {
-      this.parent[rootB] = rootA;
-    } else {
-      this.parent[rootB] = rootA;
-      this.rank[rootA]++;
-    }
-
-    return true;
-  }
+  return Math.abs(a);
 }
 ```
 
