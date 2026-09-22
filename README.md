@@ -2,28 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Fibonacci
+## 📌 Greatest Common Divisor
 
-**Category:** Dynamic Programming
+**Category:** Math
 
-**Updated:** Tue, 22 Sep 2026 11:00:23 GMT
+**Updated:** Tue, 22 Sep 2026 16:20:02 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function fibonacci(n) {
-  if (n <= 1) return n;
-
-  let prev = 0;
-  let curr = 1;
-
-  for (let i = 2; i <= n; i++) {
-    const next = prev + curr;
-    prev = curr;
-    curr = next;
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  return curr;
+  return Math.abs(a);
 }
 ```
 
