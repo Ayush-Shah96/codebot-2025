@@ -2,29 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Insertion Sort
 
-**Category:** Linked List
+**Category:** Sorting
 
-**Updated:** Tue, 22 Sep 2026 20:54:57 GMT
+**Updated:** Tue, 22 Sep 2026 23:29:57 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function insertionSort(arr) {
+  const result = [...arr];
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
 
-    if (slow === fast) {
-      return true;
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
     }
+
+    result[j + 1] = current;
   }
 
-  return false;
+  return result;
 }
 ```
 
