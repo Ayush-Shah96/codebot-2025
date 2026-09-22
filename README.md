@@ -2,36 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Topological Sort
+## 📌 Fibonacci
 
-**Category:** Graph
+**Category:** Dynamic Programming
 
-**Updated:** Mon, 21 Sep 2026 23:49:44 GMT
+**Updated:** Tue, 22 Sep 2026 03:27:08 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function topologicalSort(graph) {
-  const visited = new Set();
-  const result = [];
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  function dfs(node) {
-    if (visited.has(node)) return;
+  let prev = 0;
+  let curr = 1;
 
-    visited.add(node);
-
-    for (const neighbor of graph[node] || []) {
-      dfs(neighbor);
-    }
-
-    result.push(node);
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  for (const node in graph) {
-    dfs(node);
-  }
-
-  return result.reverse();
+  return curr;
 }
 ```
 
