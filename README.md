@@ -2,45 +2,23 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Union Find
+## 📌 Depth First Search
 
-**Category:** Disjoint Set
+**Category:** Graph Traversal
 
-**Updated:** Wed, 23 Sep 2026 10:49:14 GMT
+**Updated:** Wed, 23 Sep 2026 16:09:54 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-class UnionFind {
-  constructor(n) {
-    this.parent = Array.from({ length: n }, (_, i) => i);
-    this.rank = Array(n).fill(0);
-  }
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  find(x) {
-    if (this.parent[x] !== x) {
-      this.parent[x] = this.find(this.parent[x]);
-    }
+  visited.add(start);
+  console.log(start);
 
-    return this.parent[x];
-  }
-
-  union(a, b) {
-    const rootA = this.find(a);
-    const rootB = this.find(b);
-
-    if (rootA === rootB) return false;
-
-    if (this.rank[rootA] < this.rank[rootB]) {
-      this.parent[rootA] = rootB;
-    } else if (this.rank[rootA] > this.rank[rootB]) {
-      this.parent[rootB] = rootA;
-    } else {
-      this.parent[rootB] = rootA;
-      this.rank[rootA]++;
-    }
-
-    return true;
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
 }
 ```
