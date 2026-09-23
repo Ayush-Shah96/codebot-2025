@@ -2,24 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Depth First Search
+## 📌 Selection Sort
 
-**Category:** Graph Traversal
+**Category:** Sorting
 
-**Updated:** Wed, 23 Sep 2026 16:09:54 GMT
+**Updated:** Wed, 23 Sep 2026 21:07:09 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dfs(graph, start, visited = new Set()) {
-  if (visited.has(start)) return;
+function selectionSort(arr) {
+  const result = [...arr];
 
-  visited.add(start);
-  console.log(start);
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
 
-  for (const neighbor of graph[start]) {
-    dfs(graph, neighbor, visited);
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
+      }
+    }
+
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
+
+  return result;
 }
 ```
 
