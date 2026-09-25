@@ -2,28 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Reverse Linked List
+## 📌 Dijkstra's Algorithm
 
-**Category:** Linked List
+**Category:** Graph
 
-**Updated:** Fri, 25 Sep 2026 11:13:24 GMT
+**Updated:** Fri, 25 Sep 2026 16:36:51 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function reverseLinkedList(head) {
-  let previous = null;
-  let current = head;
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  while (current !== null) {
-    const next = current.next;
-
-    current.next = previous;
-    previous = current;
-    current = next;
+  for (const node in graph) {
+    distances[node] = Infinity;
   }
 
-  return previous;
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
+      }
+    }
+  }
+
+  return distances;
 }
 ```
 
