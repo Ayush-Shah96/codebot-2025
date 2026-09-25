@@ -2,29 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Reverse Linked List
 
-**Category:** Binary Tree
+**Category:** Linked List
 
-**Updated:** Fri, 25 Sep 2026 03:35:09 GMT
+**Updated:** Fri, 25 Sep 2026 11:13:24 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
 
-  function traverse(node) {
-    if (!node) return;
+  while (current !== null) {
+    const next = current.next;
 
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  traverse(root);
-
-  return result;
+  return previous;
 }
 ```
 
