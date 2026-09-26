@@ -2,28 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Reverse Linked List
+## 📌 Detect Cycle in Linked List
 
 **Category:** Linked List
 
-**Updated:** Sat, 26 Sep 2026 10:51:32 GMT
+**Updated:** Sat, 26 Sep 2026 15:50:46 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function reverseLinkedList(head) {
-  let previous = null;
-  let current = head;
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  while (current !== null) {
-    const next = current.next;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
 
-    current.next = previous;
-    previous = current;
-    current = next;
+    if (slow === fast) {
+      return true;
+    }
   }
 
-  return previous;
+  return false;
 }
 ```
 
