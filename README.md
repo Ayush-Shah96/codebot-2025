@@ -2,29 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Dijkstra's Algorithm
 
-**Category:** Linked List
+**Category:** Graph
 
-**Updated:** Sat, 26 Sep 2026 15:50:46 GMT
+**Updated:** Sat, 26 Sep 2026 20:40:46 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  for (const node in graph) {
+    distances[node] = Infinity;
+  }
 
-    if (slow === fast) {
-      return true;
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
+      }
     }
   }
 
-  return false;
+  return distances;
 }
 ```
 
