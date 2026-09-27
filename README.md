@@ -2,32 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Detect Cycle in Linked List
 
-**Category:** Math
+**Category:** Linked List
 
-**Updated:** Sun, 27 Sep 2026 03:49:34 GMT
+**Updated:** Sun, 27 Sep 2026 11:27:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
+    if (slow === fast) {
+      return true;
     }
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  return false;
 }
 ```
 
