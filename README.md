@@ -2,21 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Two Sum
 
-**Category:** Math
+**Category:** Arrays
 
-**Updated:** Mon, 28 Sep 2026 12:59:16 GMT
+**Updated:** Mon, 28 Sep 2026 21:04:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function twoSum(nums, target) {
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    }
+
+    map.set(nums[i], i);
   }
 
-  return Math.abs(a);
+  return [];
 }
 ```
 
