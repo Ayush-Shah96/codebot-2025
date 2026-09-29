@@ -2,29 +2,27 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Bubble Sort
 
-**Category:** Arrays
+**Category:** Sorting
 
-**Updated:** Mon, 28 Sep 2026 21:04:27 GMT
+**Updated:** Tue, 29 Sep 2026 04:23:58 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
-
-    if (map.has(complement)) {
-      return [map.get(complement), i];
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
     }
-
-    map.set(nums[i], i);
   }
 
-  return [];
+  return result;
 }
 ```
 
