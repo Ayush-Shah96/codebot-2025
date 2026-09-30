@@ -2,28 +2,35 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Selection Sort
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Sorting
+**Category:** Binary Tree
 
-**Updated:** Wed, 30 Sep 2026 00:04:22 GMT
+**Updated:** Wed, 30 Sep 2026 09:20:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function selectionSort(arr) {
-  const result = [...arr];
+function levelOrder(root) {
+  if (!root) return [];
 
-  for (let i = 0; i < result.length; i++) {
-    let minIndex = i;
+  const result = [];
+  const queue = [root];
 
-    for (let j = i + 1; j < result.length; j++) {
-      if (result[j] < result[minIndex]) {
-        minIndex = j;
-      }
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
 
-    [result[i], result[minIndex]] = [result[minIndex], result[i]];
+    result.push(level);
   }
 
   return result;
