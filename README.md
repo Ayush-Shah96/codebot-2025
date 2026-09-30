@@ -2,44 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Selection Sort
 
 **Category:** Sorting
 
-**Updated:** Tue, 29 Sep 2026 19:47:31 GMT
+**Updated:** Wed, 30 Sep 2026 00:04:22 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
+function selectionSort(arr) {
   const result = [...arr];
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
+      }
     }
 
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
-    }
-  }
-
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
   return result;
