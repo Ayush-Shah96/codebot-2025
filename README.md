@@ -2,34 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Binary Search
 
-**Category:** Stack
+**Category:** Searching
 
-**Updated:** Thu, 01 Oct 2026 04:19:25 GMT
+**Updated:** Thu, 01 Oct 2026 12:29:43 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) {
+      left = mid + 1;
     } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
+      right = mid - 1;
     }
   }
 
-  return stack.length === 0;
+  return -1;
 }
 ```
 
