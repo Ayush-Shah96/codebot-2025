@@ -2,32 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Two Sum
 
-**Category:** Searching
+**Category:** Arrays
 
-**Updated:** Thu, 01 Oct 2026 12:29:43 GMT
+**Updated:** Thu, 01 Oct 2026 20:07:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function twoSum(nums, target) {
+  const map = new Map();
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
 
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+    if (map.has(complement)) {
+      return [map.get(complement), i];
     }
+
+    map.set(nums[i], i);
   }
 
-  return -1;
+  return [];
 }
 ```
 
