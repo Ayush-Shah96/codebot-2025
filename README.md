@@ -2,29 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Dijkstra's Algorithm
 
-**Category:** Arrays
+**Category:** Graph
 
-**Updated:** Thu, 01 Oct 2026 20:07:20 GMT
+**Updated:** Fri, 02 Oct 2026 00:31:38 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
-
-    if (map.has(complement)) {
-      return [map.get(complement), i];
-    }
-
-    map.set(nums[i], i);
+  for (const node in graph) {
+    distances[node] = Infinity;
   }
 
-  return [];
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
+      }
+    }
+  }
+
+  return distances;
 }
 ```
 
