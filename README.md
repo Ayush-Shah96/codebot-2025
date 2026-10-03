@@ -2,31 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Depth First Search
 
-**Category:** Sorting
+**Category:** Graph Traversal
 
-**Updated:** Sat, 03 Oct 2026 03:55:04 GMT
+**Updated:** Sat, 03 Oct 2026 11:09:00 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
+  visited.add(start);
+  console.log(start);
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
-
-  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
