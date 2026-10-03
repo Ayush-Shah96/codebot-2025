@@ -2,36 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Topological Sort
+## 📌 Quick Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Fri, 02 Oct 2026 21:51:02 GMT
+**Updated:** Sat, 03 Oct 2026 03:55:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function topologicalSort(graph) {
-  const visited = new Set();
-  const result = [];
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  function dfs(node) {
-    if (visited.has(node)) return;
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
 
-    visited.add(node);
-
-    for (const neighbor of graph[node] || []) {
-      dfs(neighbor);
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
-
-    result.push(node);
   }
 
-  for (const node in graph) {
-    dfs(node);
-  }
-
-  return result.reverse();
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
