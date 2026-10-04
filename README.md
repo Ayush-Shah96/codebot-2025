@@ -2,40 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Insertion Sort
 
 **Category:** Sorting
 
-**Updated:** Sun, 04 Oct 2026 11:49:22 GMT
+**Updated:** Sun, 04 Oct 2026 16:28:56 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function insertionSort(arr) {
+  const result = [...arr];
 
-  const mid = Math.floor(arr.length / 2);
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
 
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
     }
+
+    result[j + 1] = current;
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  return result;
 }
 ```
 
