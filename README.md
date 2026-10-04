@@ -2,34 +2,40 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Merge Sort
 
-**Category:** Stack
+**Category:** Sorting
 
-**Updated:** Sun, 04 Oct 2026 04:28:27 GMT
+**Updated:** Sun, 04 Oct 2026 11:49:22 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
+  const mid = Math.floor(arr.length / 2);
+
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  const result = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
     } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
+      result.push(right[j++]);
     }
   }
 
-  return stack.length === 0;
+  return [...result, ...left.slice(i), ...right.slice(j)];
 }
 ```
 
