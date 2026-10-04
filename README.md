@@ -2,31 +2,34 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Valid Parentheses
 
-**Category:** Sorting
+**Category:** Stack
 
-**Updated:** Sun, 04 Oct 2026 16:28:56 GMT
+**Updated:** Sun, 04 Oct 2026 20:53:49 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
-  const result = [...arr];
+function isValid(s) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
-
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
+  for (const char of s) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) {
+        return false;
+      }
     }
-
-    result[j + 1] = current;
   }
 
-  return result;
+  return stack.length === 0;
 }
 ```
 
