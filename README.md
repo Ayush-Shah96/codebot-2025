@@ -2,34 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Greatest Common Divisor
 
-**Category:** Stack
+**Category:** Math
 
-**Updated:** Sun, 04 Oct 2026 20:53:49 GMT
+**Updated:** Sun, 04 Oct 2026 23:50:06 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
-
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
-    } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
-    }
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  return stack.length === 0;
+  return Math.abs(a);
 }
 ```
 
