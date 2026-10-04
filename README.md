@@ -2,32 +2,34 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sliding Window
+## 📌 Valid Parentheses
 
-**Category:** Arrays
+**Category:** Stack
 
-**Updated:** Sat, 03 Oct 2026 23:31:21 GMT
+**Updated:** Sun, 04 Oct 2026 04:28:27 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSumSubarray(arr, k) {
-  if (arr.length < k) return null;
+function isValid(s) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
 
-  let windowSum = 0;
-
-  for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+  for (const char of s) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) {
+        return false;
+      }
+    }
   }
 
-  let maximum = windowSum;
-
-  for (let i = k; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - k];
-    maximum = Math.max(maximum, windowSum);
-  }
-
-  return maximum;
+  return stack.length === 0;
 }
 ```
 
