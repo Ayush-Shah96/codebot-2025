@@ -2,27 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Bubble Sort
+## 📌 Detect Cycle in Linked List
 
-**Category:** Sorting
+**Category:** Linked List
 
-**Updated:** Wed, 07 Oct 2026 09:51:19 GMT
+**Updated:** Wed, 07 Oct 2026 18:27:56 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bubbleSort(arr) {
-  const result = [...arr];
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
-      }
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      return true;
     }
   }
 
-  return result;
+  return false;
 }
 ```
 
