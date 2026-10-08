@@ -2,31 +2,47 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Breadth First Search
+## 📌 Heap Sort
 
-**Category:** Graph Traversal
+**Category:** Sorting
 
-**Updated:** Thu, 08 Oct 2026 00:43:05 GMT
+**Updated:** Thu, 08 Oct 2026 10:02:35 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bfs(graph, start) {
-  const queue = [start];
-  const visited = new Set([start]);
+function heapSort(arr) {
+  const result = [...arr];
 
-  while (queue.length > 0) {
-    const node = queue.shift();
+  function heapify(n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
 
-    console.log(node);
+    if (left < n && result[left] > result[largest]) {
+      largest = left;
+    }
 
-    for (const neighbor of graph[node]) {
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push(neighbor);
-      }
+    if (right < n && result[right] > result[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      [result[i], result[largest]] = [result[largest], result[i]];
+      heapify(n, largest);
     }
   }
+
+  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
+    heapify(result.length, i);
+  }
+
+  for (let i = result.length - 1; i > 0; i--) {
+    [result[0], result[i]] = [result[i], result[0]];
+    heapify(i, 0);
+  }
+
+  return result;
 }
 ```
 
