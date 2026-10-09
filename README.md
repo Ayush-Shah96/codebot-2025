@@ -2,47 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Topological Sort
 
-**Category:** Sorting
+**Category:** Graph
 
-**Updated:** Thu, 08 Oct 2026 18:27:24 GMT
+**Updated:** Fri, 09 Oct 2026 00:59:08 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  function dfs(node) {
+    if (visited.has(node)) return;
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
+    visited.add(node);
+
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
     }
 
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
-    }
+    result.push(node);
   }
 
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
+  for (const node in graph) {
+    dfs(node);
   }
 
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
-  }
-
-  return result;
+  return result.reverse();
 }
 ```
 
