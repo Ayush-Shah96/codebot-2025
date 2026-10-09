@@ -6,7 +6,7 @@
 
 **Category:** Disjoint Set
 
-**Updated:** Fri, 09 Oct 2026 17:59:30 GMT
+**Updated:** Fri, 09 Oct 2026 22:32:58 GMT
 
 ### 💻 JavaScript Implementation
 
