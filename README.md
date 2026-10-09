@@ -2,25 +2,46 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Kadane's Algorithm
+## 📌 Union Find
 
-**Category:** Arrays
+**Category:** Disjoint Set
 
-**Updated:** Fri, 09 Oct 2026 10:05:34 GMT
+**Updated:** Fri, 09 Oct 2026 17:59:30 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSubarraySum(arr) {
-  let current = arr[0];
-  let maximum = arr[0];
-
-  for (let i = 1; i < arr.length; i++) {
-    current = Math.max(arr[i], current + arr[i]);
-    maximum = Math.max(maximum, current);
+class UnionFind {
+  constructor(n) {
+    this.parent = Array.from({ length: n }, (_, i) => i);
+    this.rank = Array(n).fill(0);
   }
 
-  return maximum;
+  find(x) {
+    if (this.parent[x] !== x) {
+      this.parent[x] = this.find(this.parent[x]);
+    }
+
+    return this.parent[x];
+  }
+
+  union(a, b) {
+    const rootA = this.find(a);
+    const rootB = this.find(b);
+
+    if (rootA === rootB) return false;
+
+    if (this.rank[rootA] < this.rank[rootB]) {
+      this.parent[rootA] = rootB;
+    } else if (this.rank[rootA] > this.rank[rootB]) {
+      this.parent[rootB] = rootA;
+    } else {
+      this.parent[rootB] = rootA;
+      this.rank[rootA]++;
+    }
+
+    return true;
+  }
 }
 ```
 
