@@ -2,32 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Binary Tree Inorder Traversal
 
-**Category:** Searching
+**Category:** Binary Tree
 
-**Updated:** Sat, 10 Oct 2026 11:57:23 GMT
+**Updated:** Sat, 10 Oct 2026 17:11:05 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function inorderTraversal(root) {
+  const result = [];
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  function traverse(node) {
+    if (!node) return;
 
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
   }
 
-  return -1;
+  traverse(root);
+
+  return result;
 }
 ```
 
