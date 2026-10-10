@@ -2,27 +2,25 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Bubble Sort
 
-**Category:** Binary Tree
+**Category:** Sorting
 
-**Updated:** Sat, 10 Oct 2026 17:11:05 GMT
+**Updated:** Sat, 10 Oct 2026 21:11:49 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  function traverse(node) {
-    if (!node) return;
-
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
+    }
   }
-
-  traverse(root);
 
   return result;
 }
