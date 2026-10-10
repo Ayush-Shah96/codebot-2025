@@ -2,46 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Union Find
+## 📌 Binary Tree Inorder Traversal
 
-**Category:** Disjoint Set
+**Category:** Binary Tree
 
-**Updated:** Fri, 09 Oct 2026 22:32:58 GMT
+**Updated:** Sat, 10 Oct 2026 04:28:14 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-class UnionFind {
-  constructor(n) {
-    this.parent = Array.from({ length: n }, (_, i) => i);
-    this.rank = Array(n).fill(0);
+function inorderTraversal(root) {
+  const result = [];
+
+  function traverse(node) {
+    if (!node) return;
+
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
   }
 
-  find(x) {
-    if (this.parent[x] !== x) {
-      this.parent[x] = this.find(this.parent[x]);
-    }
+  traverse(root);
 
-    return this.parent[x];
-  }
-
-  union(a, b) {
-    const rootA = this.find(a);
-    const rootB = this.find(b);
-
-    if (rootA === rootB) return false;
-
-    if (this.rank[rootA] < this.rank[rootB]) {
-      this.parent[rootA] = rootB;
-    } else if (this.rank[rootA] > this.rank[rootB]) {
-      this.parent[rootB] = rootA;
-    } else {
-      this.parent[rootB] = rootA;
-      this.rank[rootA]++;
-    }
-
-    return true;
-  }
+  return result;
 }
 ```
 
