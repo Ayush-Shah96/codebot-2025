@@ -2,24 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Depth First Search
+## 📌 Sliding Window
 
-**Category:** Graph Traversal
+**Category:** Arrays
 
-**Updated:** Tue, 13 Oct 2026 02:27:55 GMT
+**Updated:** Tue, 13 Oct 2026 10:07:26 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dfs(graph, start, visited = new Set()) {
-  if (visited.has(start)) return;
+function maxSumSubarray(arr, k) {
+  if (arr.length < k) return null;
 
-  visited.add(start);
-  console.log(start);
+  let windowSum = 0;
 
-  for (const neighbor of graph[start]) {
-    dfs(graph, neighbor, visited);
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
+
+  let maximum = windowSum;
+
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maximum = Math.max(maximum, windowSum);
+  }
+
+  return maximum;
 }
 ```
 
