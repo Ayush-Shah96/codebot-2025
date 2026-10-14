@@ -2,32 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Two Sum
 
-**Category:** Math
+**Category:** Arrays
 
-**Updated:** Tue, 13 Oct 2026 18:54:49 GMT
+**Updated:** Wed, 14 Oct 2026 00:09:15 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function twoSum(nums, target) {
+  const map = new Map();
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
+    if (map.has(complement)) {
+      return [map.get(complement), i];
     }
+
+    map.set(nums[i], i);
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  return [];
 }
 ```
 
