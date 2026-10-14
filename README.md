@@ -2,32 +2,38 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Math
+**Category:** Binary Tree
 
-**Updated:** Wed, 14 Oct 2026 19:10:52 GMT
+**Updated:** Wed, 14 Oct 2026 23:42:12 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function levelOrder(root) {
+  if (!root) return [];
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  const result = [];
+  const queue = [root];
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
+
+    result.push(level);
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  return result;
 }
 ```
 
