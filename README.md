@@ -6,7 +6,7 @@
 
 **Category:** Binary Tree
 
-**Updated:** Wed, 14 Oct 2026 23:42:12 GMT
+**Updated:** Thu, 15 Oct 2026 03:20:28 GMT
 
 ### 💻 JavaScript Implementation
 
