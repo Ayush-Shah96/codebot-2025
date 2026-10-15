@@ -2,32 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Sliding Window
 
-**Category:** Searching
+**Category:** Arrays
 
-**Updated:** Thu, 15 Oct 2026 16:21:53 GMT
+**Updated:** Thu, 15 Oct 2026 20:57:40 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function maxSumSubarray(arr, k) {
+  if (arr.length < k) return null;
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  let windowSum = 0;
 
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
 
-  return -1;
+  let maximum = windowSum;
+
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maximum = Math.max(maximum, windowSum);
+  }
+
+  return maximum;
 }
 ```
 
