@@ -2,52 +2,40 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Merge Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Fri, 16 Oct 2026 10:45:40 GMT
+**Updated:** Fri, 16 Oct 2026 16:07:55 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  for (const node in graph) {
-    distances[node] = Infinity;
-  }
+  const mid = Math.floor(arr.length / 2);
 
-  distances[start] = 0;
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
 
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
+  return merge(left, right);
+}
 
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
-      }
-    }
+function merge(left, right) {
+  const result = [];
+  let i = 0;
+  let j = 0;
 
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
     }
   }
 
-  return distances;
+  return [...result, ...left.slice(i), ...right.slice(j)];
 }
 ```
 
