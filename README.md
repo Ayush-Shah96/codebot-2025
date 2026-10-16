@@ -2,40 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Breadth First Search
 
-**Category:** Sorting
+**Category:** Graph Traversal
 
-**Updated:** Fri, 16 Oct 2026 16:07:55 GMT
+**Updated:** Fri, 16 Oct 2026 20:32:28 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function bfs(graph, start) {
+  const queue = [start];
+  const visited = new Set([start]);
 
-  const mid = Math.floor(arr.length / 2);
+  while (queue.length > 0) {
+    const node = queue.shift();
 
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
+    console.log(node);
 
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
+    for (const neighbor of graph[node]) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push(neighbor);
+      }
     }
   }
-
-  return [...result, ...left.slice(i), ...right.slice(j)];
 }
 ```
 
