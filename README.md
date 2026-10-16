@@ -2,34 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Dijkstra's Algorithm
 
-**Category:** Stack
+**Category:** Graph
 
-**Updated:** Fri, 16 Oct 2026 03:16:07 GMT
+**Updated:** Fri, 16 Oct 2026 10:45:40 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
-    } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
+  for (const node in graph) {
+    distances[node] = Infinity;
+  }
+
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
       }
     }
   }
 
-  return stack.length === 0;
+  return distances;
 }
 ```
 
