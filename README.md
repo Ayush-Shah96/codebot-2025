@@ -2,31 +2,34 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Breadth First Search
+## 📌 Valid Parentheses
 
-**Category:** Graph Traversal
+**Category:** Stack
 
-**Updated:** Fri, 16 Oct 2026 20:32:28 GMT
+**Updated:** Fri, 16 Oct 2026 23:15:33 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bfs(graph, start) {
-  const queue = [start];
-  const visited = new Set([start]);
+function isValid(s) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
 
-  while (queue.length > 0) {
-    const node = queue.shift();
-
-    console.log(node);
-
-    for (const neighbor of graph[node]) {
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push(neighbor);
+  for (const char of s) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) {
+        return false;
       }
     }
   }
+
+  return stack.length === 0;
 }
 ```
 
