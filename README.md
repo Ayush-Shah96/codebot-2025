@@ -2,38 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Level Order Traversal
+## 📌 Fibonacci
 
-**Category:** Binary Tree
+**Category:** Dynamic Programming
 
-**Updated:** Sat, 17 Oct 2026 17:50:32 GMT
+**Updated:** Sat, 17 Oct 2026 20:10:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function levelOrder(root) {
-  if (!root) return [];
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  const result = [];
-  const queue = [root];
+  let prev = 0;
+  let curr = 1;
 
-  while (queue.length > 0) {
-    const levelSize = queue.length;
-    const level = [];
-
-    for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift();
-
-      level.push(node.value);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-
-    result.push(level);
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  return result;
+  return curr;
 }
 ```
 
