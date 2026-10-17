@@ -2,29 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Fibonacci
 
-**Category:** Arrays
+**Category:** Dynamic Programming
 
-**Updated:** Sat, 17 Oct 2026 03:06:54 GMT
+**Updated:** Sat, 17 Oct 2026 10:11:17 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
+  let prev = 0;
+  let curr = 1;
 
-    if (map.has(complement)) {
-      return [map.get(complement), i];
-    }
-
-    map.set(nums[i], i);
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  return [];
+  return curr;
 }
 ```
 
