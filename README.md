@@ -2,32 +2,38 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Searching
+**Category:** Binary Tree
 
-**Updated:** Sat, 17 Oct 2026 15:00:00 GMT
+**Updated:** Sat, 17 Oct 2026 17:50:32 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function levelOrder(root) {
+  if (!root) return [];
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  const result = [];
+  const queue = [root];
 
-    if (arr[mid] === target) return mid;
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
 
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
+
+    result.push(level);
   }
 
-  return -1;
+  return result;
 }
 ```
 
