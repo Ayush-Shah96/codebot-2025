@@ -2,28 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Fibonacci
+## 📌 Binary Search
 
-**Category:** Dynamic Programming
+**Category:** Searching
 
-**Updated:** Sat, 17 Oct 2026 10:11:17 GMT
+**Updated:** Sat, 17 Oct 2026 15:00:00 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function fibonacci(n) {
-  if (n <= 1) return n;
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  let prev = 0;
-  let curr = 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
 
-  for (let i = 2; i <= n; i++) {
-    const next = prev + curr;
-    prev = curr;
-    curr = next;
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
   }
 
-  return curr;
+  return -1;
 }
 ```
 
