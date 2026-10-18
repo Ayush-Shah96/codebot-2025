@@ -2,34 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Two Sum
 
-**Category:** Stack
+**Category:** Arrays
 
-**Updated:** Sun, 18 Oct 2026 03:09:31 GMT
+**Updated:** Sun, 18 Oct 2026 10:26:52 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function twoSum(nums, target) {
+  const map = new Map();
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
-    } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (map.has(complement)) {
+      return [map.get(complement), i];
     }
+
+    map.set(nums[i], i);
   }
 
-  return stack.length === 0;
+  return [];
 }
 ```
 
