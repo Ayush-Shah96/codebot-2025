@@ -2,29 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Sliding Window
 
 **Category:** Arrays
 
-**Updated:** Sun, 18 Oct 2026 10:26:52 GMT
+**Updated:** Sun, 18 Oct 2026 15:25:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
+function maxSumSubarray(arr, k) {
+  if (arr.length < k) return null;
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
+  let windowSum = 0;
 
-    if (map.has(complement)) {
-      return [map.get(complement), i];
-    }
-
-    map.set(nums[i], i);
+  for (let i = 0; i < k; i++) {
+    windowSum += arr[i];
   }
 
-  return [];
+  let maximum = windowSum;
+
+  for (let i = k; i < arr.length; i++) {
+    windowSum += arr[i] - arr[i - k];
+    maximum = Math.max(maximum, windowSum);
+  }
+
+  return maximum;
 }
 ```
 
