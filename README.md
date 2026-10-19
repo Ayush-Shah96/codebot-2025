@@ -2,47 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Reverse Linked List
 
-**Category:** Sorting
+**Category:** Linked List
 
-**Updated:** Mon, 19 Oct 2026 03:23:16 GMT
+**Updated:** Mon, 19 Oct 2026 12:12:56 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  while (current !== null) {
+    const next = current.next;
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
-    }
-
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
-    }
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
-  }
-
-  return result;
+  return previous;
 }
 ```
 
