@@ -2,32 +2,47 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sliding Window
+## 📌 Heap Sort
 
-**Category:** Arrays
+**Category:** Sorting
 
-**Updated:** Sun, 18 Oct 2026 22:47:34 GMT
+**Updated:** Mon, 19 Oct 2026 03:23:16 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSumSubarray(arr, k) {
-  if (arr.length < k) return null;
+function heapSort(arr) {
+  const result = [...arr];
 
-  let windowSum = 0;
+  function heapify(n, i) {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
 
-  for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+    if (left < n && result[left] > result[largest]) {
+      largest = left;
+    }
+
+    if (right < n && result[right] > result[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      [result[i], result[largest]] = [result[largest], result[i]];
+      heapify(n, largest);
+    }
   }
 
-  let maximum = windowSum;
-
-  for (let i = k; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - k];
-    maximum = Math.max(maximum, windowSum);
+  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
+    heapify(result.length, i);
   }
 
-  return maximum;
+  for (let i = result.length - 1; i > 0; i--) {
+    [result[0], result[i]] = [result[i], result[0]];
+    heapify(i, 0);
+  }
+
+  return result;
 }
 ```
 
