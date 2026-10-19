@@ -2,28 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Reverse Linked List
+## 📌 Sieve of Eratosthenes
 
-**Category:** Linked List
+**Category:** Math
 
-**Updated:** Mon, 19 Oct 2026 12:12:56 GMT
+**Updated:** Mon, 19 Oct 2026 20:22:32 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function reverseLinkedList(head) {
-  let previous = null;
-  let current = head;
+function findPrimes(n) {
+  const isPrime = Array(n + 1).fill(true);
 
-  while (current !== null) {
-    const next = current.next;
+  isPrime[0] = false;
+  isPrime[1] = false;
 
-    current.next = previous;
-    previous = current;
-    current = next;
+  for (let i = 2; i * i <= n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= n; j += i) {
+        isPrime[j] = false;
+      }
+    }
   }
 
-  return previous;
+  return isPrime
+    .map((value, index) => (value ? index : null))
+    .filter(value => value !== null);
 }
 ```
 
