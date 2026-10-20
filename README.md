@@ -2,32 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Topological Sort
 
-**Category:** Math
+**Category:** Graph
 
-**Updated:** Tue, 20 Oct 2026 18:55:04 GMT
+**Updated:** Tue, 20 Oct 2026 23:37:44 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  function dfs(node) {
+    if (visited.has(node)) return;
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
+    visited.add(node);
+
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
     }
+
+    result.push(node);
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  for (const node in graph) {
+    dfs(node);
+  }
+
+  return result.reverse();
 }
 ```
 
