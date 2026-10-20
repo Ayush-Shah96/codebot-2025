@@ -2,32 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Binary Search
 
-**Category:** Math
+**Category:** Searching
 
-**Updated:** Mon, 19 Oct 2026 20:22:32 GMT
+**Updated:** Tue, 20 Oct 2026 00:06:42 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
     }
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  return -1;
 }
 ```
 
