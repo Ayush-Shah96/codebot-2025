@@ -2,34 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Sieve of Eratosthenes
 
-**Category:** Stack
+**Category:** Math
 
-**Updated:** Tue, 20 Oct 2026 14:07:26 GMT
+**Updated:** Tue, 20 Oct 2026 18:55:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function findPrimes(n) {
+  const isPrime = Array(n + 1).fill(true);
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
-    } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
+  isPrime[0] = false;
+  isPrime[1] = false;
+
+  for (let i = 2; i * i <= n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= n; j += i) {
+        isPrime[j] = false;
       }
     }
   }
 
-  return stack.length === 0;
+  return isPrime
+    .map((value, index) => (value ? index : null))
+    .filter(value => value !== null);
 }
 ```
 
