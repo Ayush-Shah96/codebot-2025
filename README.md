@@ -2,36 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Topological Sort
+## 📌 Detect Cycle in Linked List
 
-**Category:** Graph
+**Category:** Linked List
 
-**Updated:** Tue, 20 Oct 2026 23:37:44 GMT
+**Updated:** Wed, 21 Oct 2026 03:25:56 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function topologicalSort(graph) {
-  const visited = new Set();
-  const result = [];
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  function dfs(node) {
-    if (visited.has(node)) return;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
 
-    visited.add(node);
-
-    for (const neighbor of graph[node] || []) {
-      dfs(neighbor);
+    if (slow === fast) {
+      return true;
     }
-
-    result.push(node);
   }
 
-  for (const node in graph) {
-    dfs(node);
-  }
-
-  return result.reverse();
+  return false;
 }
 ```
 
