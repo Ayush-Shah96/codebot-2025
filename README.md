@@ -2,40 +2,46 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Union Find
 
-**Category:** Sorting
+**Category:** Disjoint Set
 
-**Updated:** Thu, 22 Oct 2026 11:12:18 GMT
+**Updated:** Thu, 22 Oct 2026 16:40:32 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
-
-  const mid = Math.floor(arr.length / 2);
-
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
-
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
-    } else {
-      result.push(right[j++]);
-    }
+class UnionFind {
+  constructor(n) {
+    this.parent = Array.from({ length: n }, (_, i) => i);
+    this.rank = Array(n).fill(0);
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  find(x) {
+    if (this.parent[x] !== x) {
+      this.parent[x] = this.find(this.parent[x]);
+    }
+
+    return this.parent[x];
+  }
+
+  union(a, b) {
+    const rootA = this.find(a);
+    const rootB = this.find(b);
+
+    if (rootA === rootB) return false;
+
+    if (this.rank[rootA] < this.rank[rootB]) {
+      this.parent[rootA] = rootB;
+    } else if (this.rank[rootA] > this.rank[rootB]) {
+      this.parent[rootB] = rootA;
+    } else {
+      this.parent[rootB] = rootA;
+      this.rank[rootA]++;
+    }
+
+    return true;
+  }
 }
 ```
 
