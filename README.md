@@ -2,46 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Union Find
+## 📌 Detect Cycle in Linked List
 
-**Category:** Disjoint Set
+**Category:** Linked List
 
-**Updated:** Thu, 22 Oct 2026 16:40:32 GMT
+**Updated:** Thu, 22 Oct 2026 21:13:21 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-class UnionFind {
-  constructor(n) {
-    this.parent = Array.from({ length: n }, (_, i) => i);
-    this.rank = Array(n).fill(0);
-  }
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  find(x) {
-    if (this.parent[x] !== x) {
-      this.parent[x] = this.find(this.parent[x]);
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      return true;
     }
-
-    return this.parent[x];
   }
 
-  union(a, b) {
-    const rootA = this.find(a);
-    const rootB = this.find(b);
-
-    if (rootA === rootB) return false;
-
-    if (this.rank[rootA] < this.rank[rootB]) {
-      this.parent[rootA] = rootB;
-    } else if (this.rank[rootA] > this.rank[rootB]) {
-      this.parent[rootB] = rootA;
-    } else {
-      this.parent[rootB] = rootA;
-      this.rank[rootA]++;
-    }
-
-    return true;
-  }
+  return false;
 }
 ```
 
