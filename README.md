@@ -2,24 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Depth First Search
+## 📌 Greatest Common Divisor
 
-**Category:** Graph Traversal
+**Category:** Math
 
-**Updated:** Fri, 23 Oct 2026 03:30:17 GMT
+**Updated:** Fri, 23 Oct 2026 11:03:52 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dfs(graph, start, visited = new Set()) {
-  if (visited.has(start)) return;
-
-  visited.add(start);
-  console.log(start);
-
-  for (const neighbor of graph[start]) {
-    dfs(graph, neighbor, visited);
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
+
+  return Math.abs(a);
 }
 ```
 
