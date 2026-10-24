@@ -2,32 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Insertion Sort
 
-**Category:** Searching
+**Category:** Sorting
 
-**Updated:** Sat, 24 Oct 2026 10:20:09 GMT
+**Updated:** Sat, 24 Oct 2026 15:25:32 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function insertionSort(arr) {
+  const result = [...arr];
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
 
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
     }
+
+    result[j + 1] = current;
   }
 
-  return -1;
+  return result;
 }
 ```
 
