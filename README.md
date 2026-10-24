@@ -2,31 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Binary Search
 
-**Category:** Sorting
+**Category:** Searching
 
-**Updated:** Sat, 24 Oct 2026 03:24:23 GMT
+**Updated:** Sat, 24 Oct 2026 10:20:09 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) {
+      left = mid + 1;
     } else {
-      right.push(arr[i]);
+      right = mid - 1;
     }
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  return -1;
 }
 ```
 
