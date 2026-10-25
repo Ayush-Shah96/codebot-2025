@@ -2,32 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sliding Window
+## 📌 Fibonacci
 
-**Category:** Arrays
+**Category:** Dynamic Programming
 
-**Updated:** Sun, 25 Oct 2026 03:20:05 GMT
+**Updated:** Sun, 25 Oct 2026 10:47:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSumSubarray(arr, k) {
-  if (arr.length < k) return null;
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  let windowSum = 0;
+  let prev = 0;
+  let curr = 1;
 
-  for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  let maximum = windowSum;
-
-  for (let i = k; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - k];
-    maximum = Math.max(maximum, windowSum);
-  }
-
-  return maximum;
+  return curr;
 }
 ```
 
