@@ -6,7 +6,7 @@
 
 **Category:** Math
 
-**Updated:** Sun, 25 Oct 2026 20:24:22 GMT
+**Updated:** Sun, 25 Oct 2026 23:01:29 GMT
 
 ### 💻 JavaScript Implementation
 
