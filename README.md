@@ -2,28 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Fibonacci
+## 📌 Depth First Search
 
-**Category:** Dynamic Programming
+**Category:** Graph Traversal
 
-**Updated:** Sun, 25 Oct 2026 10:47:20 GMT
+**Updated:** Sun, 25 Oct 2026 15:35:42 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function fibonacci(n) {
-  if (n <= 1) return n;
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  let prev = 0;
-  let curr = 1;
+  visited.add(start);
+  console.log(start);
 
-  for (let i = 2; i <= n; i++) {
-    const next = prev + curr;
-    prev = curr;
-    curr = next;
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
-
-  return curr;
 }
 ```
 
