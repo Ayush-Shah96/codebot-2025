@@ -2,21 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Dijkstra's Algorithm
 
-**Category:** Math
+**Category:** Graph
 
-**Updated:** Sun, 25 Oct 2026 23:01:29 GMT
+**Updated:** Mon, 26 Oct 2026 03:21:44 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
+
+  for (const node in graph) {
+    distances[node] = Infinity;
   }
 
-  return Math.abs(a);
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
+      }
+    }
+  }
+
+  return distances;
 }
 ```
 
