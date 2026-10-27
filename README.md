@@ -2,32 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Depth First Search
 
-**Category:** Searching
+**Category:** Graph Traversal
 
-**Updated:** Tue, 27 Oct 2026 00:14:35 GMT
+**Updated:** Tue, 27 Oct 2026 08:39:50 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
+  visited.add(start);
+  console.log(start);
 
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
-
-  return -1;
 }
 ```
 
