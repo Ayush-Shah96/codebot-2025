@@ -2,29 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Breadth First Search
 
-**Category:** Binary Tree
+**Category:** Graph Traversal
 
-**Updated:** Tue, 27 Oct 2026 15:08:21 GMT
+**Updated:** Tue, 27 Oct 2026 21:50:53 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
+function bfs(graph, start) {
+  const queue = [start];
+  const visited = new Set([start]);
 
-  function traverse(node) {
-    if (!node) return;
+  while (queue.length > 0) {
+    const node = queue.shift();
 
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+    console.log(node);
+
+    for (const neighbor of graph[node]) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push(neighbor);
+      }
+    }
   }
-
-  traverse(root);
-
-  return result;
 }
 ```
 
