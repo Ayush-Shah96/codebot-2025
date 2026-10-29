@@ -2,21 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Greatest Common Divisor
+## 📌 Reverse Linked List
 
-**Category:** Math
+**Category:** Linked List
 
-**Updated:** Thu, 29 Oct 2026 00:36:40 GMT
+**Updated:** Thu, 29 Oct 2026 09:23:33 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function gcd(a, b) {
-  while (b !== 0) {
-    [a, b] = [b, a % b];
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
+
+  while (current !== null) {
+    const next = current.next;
+
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  return Math.abs(a);
+  return previous;
 }
 ```
 
