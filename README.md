@@ -2,29 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Quick Sort
 
-**Category:** Linked List
+**Category:** Sorting
 
-**Updated:** Fri, 30 Oct 2026 17:44:23 GMT
+**Updated:** Fri, 30 Oct 2026 21:56:57 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
 
-    if (slow === fast) {
-      return true;
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
   }
 
-  return false;
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
