@@ -6,7 +6,7 @@
 
 **Category:** Linked List
 
-**Updated:** Fri, 30 Oct 2026 09:37:57 GMT
+**Updated:** Fri, 30 Oct 2026 17:44:23 GMT
 
 ### 💻 JavaScript Implementation
 
