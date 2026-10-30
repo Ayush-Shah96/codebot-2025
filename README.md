@@ -2,29 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Detect Cycle in Linked List
+## 📌 Fibonacci
 
-**Category:** Linked List
+**Category:** Dynamic Programming
 
-**Updated:** Thu, 29 Oct 2026 18:03:24 GMT
+**Updated:** Fri, 30 Oct 2026 00:37:09 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function hasCycle(head) {
-  let slow = head;
-  let fast = head;
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+  let prev = 0;
+  let curr = 1;
 
-    if (slow === fast) {
-      return true;
-    }
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  return false;
+  return curr;
 }
 ```
 
