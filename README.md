@@ -2,27 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Bubble Sort
+## 📌 Binary Search
 
-**Category:** Sorting
+**Category:** Searching
 
-**Updated:** Sun, 01 Nov 2026 12:42:55 GMT
+**Updated:** Sun, 01 Nov 2026 19:22:09 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bubbleSort(arr) {
-  const result = [...arr];
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
-      }
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
     }
   }
 
-  return result;
+  return -1;
 }
 ```
 
