@@ -2,32 +2,27 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sliding Window
+## 📌 Bubble Sort
 
-**Category:** Arrays
+**Category:** Sorting
 
-**Updated:** Mon, 02 Nov 2026 00:15:42 GMT
+**Updated:** Mon, 02 Nov 2026 10:34:37 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSumSubarray(arr, k) {
-  if (arr.length < k) return null;
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  let windowSum = 0;
-
-  for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
+    }
   }
 
-  let maximum = windowSum;
-
-  for (let i = k; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - k];
-    maximum = Math.max(maximum, windowSum);
-  }
-
-  return maximum;
+  return result;
 }
 ```
 
