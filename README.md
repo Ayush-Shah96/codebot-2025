@@ -2,27 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Bubble Sort
+## 📌 Breadth First Search
 
-**Category:** Sorting
+**Category:** Graph Traversal
 
-**Updated:** Mon, 02 Nov 2026 10:34:37 GMT
+**Updated:** Mon, 02 Nov 2026 21:25:15 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bubbleSort(arr) {
-  const result = [...arr];
+function bfs(graph, start) {
+  const queue = [start];
+  const visited = new Set([start]);
 
-  for (let i = 0; i < result.length; i++) {
-    for (let j = 0; j < result.length - i - 1; j++) {
-      if (result[j] > result[j + 1]) {
-        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+  while (queue.length > 0) {
+    const node = queue.shift();
+
+    console.log(node);
+
+    for (const neighbor of graph[node]) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push(neighbor);
       }
     }
   }
-
-  return result;
 }
 ```
 
