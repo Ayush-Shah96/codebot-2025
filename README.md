@@ -2,31 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Breadth First Search
+## 📌 Detect Cycle in Linked List
 
-**Category:** Graph Traversal
+**Category:** Linked List
 
-**Updated:** Mon, 02 Nov 2026 21:25:15 GMT
+**Updated:** Tue, 03 Nov 2026 05:27:58 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bfs(graph, start) {
-  const queue = [start];
-  const visited = new Set([start]);
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
 
-  while (queue.length > 0) {
-    const node = queue.shift();
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
 
-    console.log(node);
-
-    for (const neighbor of graph[node]) {
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push(neighbor);
-      }
+    if (slow === fast) {
+      return true;
     }
   }
+
+  return false;
 }
 ```
 
