@@ -2,27 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Inorder Traversal
+## 📌 Insertion Sort
 
-**Category:** Binary Tree
+**Category:** Sorting
 
-**Updated:** Thu, 05 Nov 2026 10:23:01 GMT
+**Updated:** Thu, 05 Nov 2026 19:31:18 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function inorderTraversal(root) {
-  const result = [];
+function insertionSort(arr) {
+  const result = [...arr];
 
-  function traverse(node) {
-    if (!node) return;
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
 
-    traverse(node.left);
-    result.push(node.value);
-    traverse(node.right);
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
+    }
+
+    result[j + 1] = current;
   }
-
-  traverse(root);
 
   return result;
 }
