@@ -2,34 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Valid Parentheses
+## 📌 Binary Tree Inorder Traversal
 
-**Category:** Stack
+**Category:** Binary Tree
 
-**Updated:** Thu, 05 Nov 2026 01:18:10 GMT
+**Updated:** Thu, 05 Nov 2026 10:23:01 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function isValid(s) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "}": "{",
-    "]": "["
-  };
+function inorderTraversal(root) {
+  const result = [];
 
-  for (const char of s) {
-    if (["(", "{", "["].includes(char)) {
-      stack.push(char);
-    } else {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
-    }
+  function traverse(node) {
+    if (!node) return;
+
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
   }
 
-  return stack.length === 0;
+  traverse(root);
+
+  return result;
 }
 ```
 
