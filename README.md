@@ -2,47 +2,34 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Valid Parentheses
 
-**Category:** Sorting
+**Category:** Stack
 
-**Updated:** Wed, 04 Nov 2026 19:24:00 GMT
+**Updated:** Thu, 05 Nov 2026 01:18:10 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function isValid(s) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
-
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
-    }
-
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
+  for (const char of s) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== pairs[char]) {
+        return false;
+      }
     }
   }
 
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
-  }
-
-  return result;
+  return stack.length === 0;
 }
 ```
 
