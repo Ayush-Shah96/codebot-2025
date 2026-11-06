@@ -2,31 +2,46 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Union Find
 
-**Category:** Sorting
+**Category:** Disjoint Set
 
-**Updated:** Fri, 06 Nov 2026 10:24:39 GMT
+**Updated:** Fri, 06 Nov 2026 18:55:20 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
-
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
+class UnionFind {
+  constructor(n) {
+    this.parent = Array.from({ length: n }, (_, i) => i);
+    this.rank = Array(n).fill(0);
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  find(x) {
+    if (this.parent[x] !== x) {
+      this.parent[x] = this.find(this.parent[x]);
+    }
+
+    return this.parent[x];
+  }
+
+  union(a, b) {
+    const rootA = this.find(a);
+    const rootB = this.find(b);
+
+    if (rootA === rootB) return false;
+
+    if (this.rank[rootA] < this.rank[rootB]) {
+      this.parent[rootA] = rootB;
+    } else if (this.rank[rootA] > this.rank[rootB]) {
+      this.parent[rootB] = rootA;
+    } else {
+      this.parent[rootB] = rootA;
+      this.rank[rootA]++;
+    }
+
+    return true;
+  }
 }
 ```
 
