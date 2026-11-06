@@ -2,28 +2,35 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Sorting
+**Category:** Binary Tree
 
-**Updated:** Thu, 05 Nov 2026 19:31:18 GMT
+**Updated:** Fri, 06 Nov 2026 01:22:44 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
-  const result = [...arr];
+function levelOrder(root) {
+  if (!root) return [];
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
+  const result = [];
+  const queue = [root];
 
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
 
-    result[j + 1] = current;
+    result.push(level);
   }
 
   return result;
