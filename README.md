@@ -2,38 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Level Order Traversal
+## 📌 Quick Sort
 
-**Category:** Binary Tree
+**Category:** Sorting
 
-**Updated:** Fri, 06 Nov 2026 01:22:44 GMT
+**Updated:** Fri, 06 Nov 2026 10:24:39 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function levelOrder(root) {
-  if (!root) return [];
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  const result = [];
-  const queue = [root];
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
 
-  while (queue.length > 0) {
-    const levelSize = queue.length;
-    const level = [];
-
-    for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift();
-
-      level.push(node.value);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
-
-    result.push(level);
   }
 
-  return result;
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
