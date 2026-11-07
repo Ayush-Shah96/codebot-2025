@@ -2,46 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Union Find
+## 📌 Selection Sort
 
-**Category:** Disjoint Set
+**Category:** Sorting
 
-**Updated:** Fri, 06 Nov 2026 18:55:20 GMT
+**Updated:** Sat, 07 Nov 2026 00:38:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-class UnionFind {
-  constructor(n) {
-    this.parent = Array.from({ length: n }, (_, i) => i);
-    this.rank = Array(n).fill(0);
-  }
+function selectionSort(arr) {
+  const result = [...arr];
 
-  find(x) {
-    if (this.parent[x] !== x) {
-      this.parent[x] = this.find(this.parent[x]);
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
+
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
+      }
     }
 
-    return this.parent[x];
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  union(a, b) {
-    const rootA = this.find(a);
-    const rootB = this.find(b);
-
-    if (rootA === rootB) return false;
-
-    if (this.rank[rootA] < this.rank[rootB]) {
-      this.parent[rootA] = rootB;
-    } else if (this.rank[rootA] > this.rank[rootB]) {
-      this.parent[rootB] = rootA;
-    } else {
-      this.parent[rootB] = rootA;
-      this.rank[rootA]++;
-    }
-
-    return true;
-  }
+  return result;
 }
 ```
 
