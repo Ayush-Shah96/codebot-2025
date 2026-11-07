@@ -2,31 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Selection Sort
+## 📌 Quick Sort
 
 **Category:** Sorting
 
-**Updated:** Sat, 07 Nov 2026 09:38:29 GMT
+**Updated:** Sat, 07 Nov 2026 17:27:21 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function selectionSort(arr) {
-  const result = [...arr];
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
 
-  for (let i = 0; i < result.length; i++) {
-    let minIndex = i;
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
 
-    for (let j = i + 1; j < result.length; j++) {
-      if (result[j] < result[minIndex]) {
-        minIndex = j;
-      }
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
-
-    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return result;
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 ```
 
