@@ -2,29 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Selection Sort
 
-**Category:** Arrays
+**Category:** Sorting
 
-**Updated:** Sun, 08 Nov 2026 04:37:07 GMT
+**Updated:** Sun, 08 Nov 2026 12:48:29 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
+function selectionSort(arr) {
+  const result = [...arr];
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
+  for (let i = 0; i < result.length; i++) {
+    let minIndex = i;
 
-    if (map.has(complement)) {
-      return [map.get(complement), i];
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j] < result[minIndex]) {
+        minIndex = j;
+      }
     }
 
-    map.set(nums[i], i);
+    [result[i], result[minIndex]] = [result[minIndex], result[i]];
   }
 
-  return [];
+  return result;
 }
 ```
 
