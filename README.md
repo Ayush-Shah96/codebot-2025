@@ -2,47 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Heap Sort
+## 📌 Two Sum
 
-**Category:** Sorting
+**Category:** Arrays
 
-**Updated:** Sat, 07 Nov 2026 21:28:16 GMT
+**Updated:** Sun, 08 Nov 2026 04:37:07 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function heapSort(arr) {
-  const result = [...arr];
+function twoSum(nums, target) {
+  const map = new Map();
 
-  function heapify(n, i) {
-    let largest = i;
-    const left = 2 * i + 1;
-    const right = 2 * i + 2;
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
 
-    if (left < n && result[left] > result[largest]) {
-      largest = left;
+    if (map.has(complement)) {
+      return [map.get(complement), i];
     }
 
-    if (right < n && result[right] > result[largest]) {
-      largest = right;
-    }
-
-    if (largest !== i) {
-      [result[i], result[largest]] = [result[largest], result[i]];
-      heapify(n, largest);
-    }
+    map.set(nums[i], i);
   }
 
-  for (let i = Math.floor(result.length / 2) - 1; i >= 0; i--) {
-    heapify(result.length, i);
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    [result[0], result[i]] = [result[i], result[0]];
-    heapify(i, 0);
-  }
-
-  return result;
+  return [];
 }
 ```
 
