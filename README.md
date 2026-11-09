@@ -2,31 +2,29 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Two Sum
 
-**Category:** Sorting
+**Category:** Arrays
 
-**Updated:** Mon, 09 Nov 2026 00:33:54 GMT
+**Updated:** Mon, 09 Nov 2026 10:55:41 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function twoSum(nums, target) {
+  const map = new Map();
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
+    if (map.has(complement)) {
+      return [map.get(complement), i];
     }
+
+    map.set(nums[i], i);
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  return [];
 }
 ```
 
