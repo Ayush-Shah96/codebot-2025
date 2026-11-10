@@ -2,31 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Reverse Linked List
 
-**Category:** Sorting
+**Category:** Linked List
 
-**Updated:** Mon, 09 Nov 2026 21:57:02 GMT
+**Updated:** Tue, 10 Nov 2026 06:01:38 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function reverseLinkedList(head) {
+  let previous = null;
+  let current = head;
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
+  while (current !== null) {
+    const next = current.next;
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
+    current.next = previous;
+    previous = current;
+    current = next;
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  return previous;
 }
 ```
 
