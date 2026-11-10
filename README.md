@@ -2,35 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Tree Level Order Traversal
+## 📌 Bubble Sort
 
-**Category:** Binary Tree
+**Category:** Sorting
 
-**Updated:** Tue, 10 Nov 2026 16:47:24 GMT
+**Updated:** Tue, 10 Nov 2026 22:52:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function levelOrder(root) {
-  if (!root) return [];
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  const result = [];
-  const queue = [root];
-
-  while (queue.length > 0) {
-    const levelSize = queue.length;
-    const level = [];
-
-    for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift();
-
-      level.push(node.value);
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
     }
-
-    result.push(level);
   }
 
   return result;
