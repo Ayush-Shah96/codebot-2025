@@ -2,28 +2,38 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Reverse Linked List
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Linked List
+**Category:** Binary Tree
 
-**Updated:** Tue, 10 Nov 2026 06:01:38 GMT
+**Updated:** Tue, 10 Nov 2026 16:47:24 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function reverseLinkedList(head) {
-  let previous = null;
-  let current = head;
+function levelOrder(root) {
+  if (!root) return [];
 
-  while (current !== null) {
-    const next = current.next;
+  const result = [];
+  const queue = [root];
 
-    current.next = previous;
-    previous = current;
-    current = next;
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    result.push(level);
   }
 
-  return previous;
+  return result;
 }
 ```
 
