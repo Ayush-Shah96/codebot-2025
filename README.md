@@ -2,31 +2,25 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Kadane's Algorithm
 
-**Category:** Sorting
+**Category:** Arrays
 
-**Updated:** Wed, 11 Nov 2026 21:44:30 GMT
+**Updated:** Thu, 12 Nov 2026 05:51:54 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function maxSubarraySum(arr) {
+  let current = arr[0];
+  let maximum = arr[0];
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
-    }
+  for (let i = 1; i < arr.length; i++) {
+    current = Math.max(arr[i], current + arr[i]);
+    maximum = Math.max(maximum, current);
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  return maximum;
 }
 ```
 
