@@ -2,52 +2,38 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Graph
+**Category:** Binary Tree
 
-**Updated:** Fri, 13 Nov 2026 21:11:30 GMT
+**Updated:** Sat, 14 Nov 2026 05:02:52 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function levelOrder(root) {
+  if (!root) return [];
 
-  for (const node in graph) {
-    distances[node] = Infinity;
-  }
+  const result = [];
+  const queue = [root];
 
-  distances[start] = 0;
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
 
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
 
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
-      }
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
 
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
-    }
+    result.push(level);
   }
 
-  return distances;
+  return result;
 }
 ```
 
