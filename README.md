@@ -2,31 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Breadth First Search
 
-**Category:** Sorting
+**Category:** Graph Traversal
 
-**Updated:** Sun, 15 Nov 2026 00:45:53 GMT
+**Updated:** Sun, 15 Nov 2026 10:25:14 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
-  const result = [...arr];
+function bfs(graph, start) {
+  const queue = [start];
+  const visited = new Set([start]);
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
+  while (queue.length > 0) {
+    const node = queue.shift();
 
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
+    console.log(node);
+
+    for (const neighbor of graph[node]) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        queue.push(neighbor);
+      }
     }
-
-    result[j + 1] = current;
   }
-
-  return result;
 }
 ```
 
