@@ -2,32 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Greatest Common Divisor
 
 **Category:** Math
 
-**Updated:** Mon, 16 Nov 2026 00:45:46 GMT
+**Updated:** Mon, 16 Nov 2026 10:40:13 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
-
-  isPrime[0] = false;
-  isPrime[1] = false;
-
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
-      }
-    }
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  return Math.abs(a);
 }
 ```
 
