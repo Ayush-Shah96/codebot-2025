@@ -2,32 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sliding Window
+## 📌 Topological Sort
 
-**Category:** Arrays
+**Category:** Graph
 
-**Updated:** Tue, 17 Nov 2026 06:41:08 GMT
+**Updated:** Tue, 17 Nov 2026 18:09:59 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSumSubarray(arr, k) {
-  if (arr.length < k) return null;
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  let windowSum = 0;
+  function dfs(node) {
+    if (visited.has(node)) return;
 
-  for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+    visited.add(node);
+
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
+    }
+
+    result.push(node);
   }
 
-  let maximum = windowSum;
-
-  for (let i = k; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - k];
-    maximum = Math.max(maximum, windowSum);
+  for (const node in graph) {
+    dfs(node);
   }
 
-  return maximum;
+  return result.reverse();
 }
 ```
 
