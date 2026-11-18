@@ -2,31 +2,25 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Insertion Sort
+## 📌 Kadane's Algorithm
 
-**Category:** Sorting
+**Category:** Arrays
 
-**Updated:** Wed, 18 Nov 2026 02:44:06 GMT
+**Updated:** Wed, 18 Nov 2026 11:10:15 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function insertionSort(arr) {
-  const result = [...arr];
+function maxSubarraySum(arr) {
+  let current = arr[0];
+  let maximum = arr[0];
 
-  for (let i = 1; i < result.length; i++) {
-    const current = result[i];
-    let j = i - 1;
-
-    while (j >= 0 && result[j] > current) {
-      result[j + 1] = result[j];
-      j--;
-    }
-
-    result[j + 1] = current;
+  for (let i = 1; i < arr.length; i++) {
+    current = Math.max(arr[i], current + arr[i]);
+    maximum = Math.max(maximum, current);
   }
 
-  return result;
+  return maximum;
 }
 ```
 
