@@ -2,25 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Kadane's Algorithm
+## 📌 Sieve of Eratosthenes
 
-**Category:** Arrays
+**Category:** Math
 
-**Updated:** Wed, 18 Nov 2026 11:10:15 GMT
+**Updated:** Wed, 18 Nov 2026 19:59:55 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSubarraySum(arr) {
-  let current = arr[0];
-  let maximum = arr[0];
+function findPrimes(n) {
+  const isPrime = Array(n + 1).fill(true);
 
-  for (let i = 1; i < arr.length; i++) {
-    current = Math.max(arr[i], current + arr[i]);
-    maximum = Math.max(maximum, current);
+  isPrime[0] = false;
+  isPrime[1] = false;
+
+  for (let i = 2; i * i <= n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= n; j += i) {
+        isPrime[j] = false;
+      }
+    }
   }
 
-  return maximum;
+  return isPrime
+    .map((value, index) => (value ? index : null))
+    .filter(value => value !== null);
 }
 ```
 
