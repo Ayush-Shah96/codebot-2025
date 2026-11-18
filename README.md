@@ -2,36 +2,31 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Topological Sort
+## 📌 Insertion Sort
 
-**Category:** Graph
+**Category:** Sorting
 
-**Updated:** Tue, 17 Nov 2026 18:09:59 GMT
+**Updated:** Wed, 18 Nov 2026 02:44:06 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function topologicalSort(graph) {
-  const visited = new Set();
-  const result = [];
+function insertionSort(arr) {
+  const result = [...arr];
 
-  function dfs(node) {
-    if (visited.has(node)) return;
+  for (let i = 1; i < result.length; i++) {
+    const current = result[i];
+    let j = i - 1;
 
-    visited.add(node);
-
-    for (const neighbor of graph[node] || []) {
-      dfs(neighbor);
+    while (j >= 0 && result[j] > current) {
+      result[j + 1] = result[j];
+      j--;
     }
 
-    result.push(node);
+    result[j + 1] = current;
   }
 
-  for (const node in graph) {
-    dfs(node);
-  }
-
-  return result.reverse();
+  return result;
 }
 ```
 
