@@ -2,32 +2,52 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sieve of Eratosthenes
+## 📌 Dijkstra's Algorithm
 
-**Category:** Math
+**Category:** Graph
 
-**Updated:** Wed, 18 Nov 2026 19:59:55 GMT
+**Updated:** Thu, 19 Nov 2026 02:17:04 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function findPrimes(n) {
-  const isPrime = Array(n + 1).fill(true);
+function dijkstra(graph, start) {
+  const distances = {};
+  const visited = new Set();
 
-  isPrime[0] = false;
-  isPrime[1] = false;
+  for (const node in graph) {
+    distances[node] = Infinity;
+  }
 
-  for (let i = 2; i * i <= n; i++) {
-    if (isPrime[i]) {
-      for (let j = i * i; j <= n; j += i) {
-        isPrime[j] = false;
+  distances[start] = 0;
+
+  while (visited.size < Object.keys(graph).length) {
+    let current = null;
+
+    for (const node in distances) {
+      if (
+        !visited.has(node) &&
+        (current === null || distances[node] < distances[current])
+      ) {
+        current = node;
+      }
+    }
+
+    if (current === null) break;
+
+    visited.add(current);
+
+    for (const neighbor in graph[current]) {
+      const distance =
+        distances[current] + graph[current][neighbor];
+
+      if (distance < distances[neighbor]) {
+        distances[neighbor] = distance;
       }
     }
   }
 
-  return isPrime
-    .map((value, index) => (value ? index : null))
-    .filter(value => value !== null);
+  return distances;
 }
 ```
 
