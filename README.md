@@ -2,25 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Kadane's Algorithm
+## 📌 Greatest Common Divisor
 
-**Category:** Arrays
+**Category:** Math
 
-**Updated:** Fri, 20 Nov 2026 10:55:59 GMT
+**Updated:** Fri, 20 Nov 2026 19:38:17 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSubarraySum(arr) {
-  let current = arr[0];
-  let maximum = arr[0];
-
-  for (let i = 1; i < arr.length; i++) {
-    current = Math.max(arr[i], current + arr[i]);
-    maximum = Math.max(maximum, current);
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  return maximum;
+  return Math.abs(a);
 }
 ```
 
