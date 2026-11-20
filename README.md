@@ -2,24 +2,25 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Depth First Search
+## 📌 Kadane's Algorithm
 
-**Category:** Graph Traversal
+**Category:** Arrays
 
-**Updated:** Fri, 20 Nov 2026 02:01:25 GMT
+**Updated:** Fri, 20 Nov 2026 10:55:59 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dfs(graph, start, visited = new Set()) {
-  if (visited.has(start)) return;
+function maxSubarraySum(arr) {
+  let current = arr[0];
+  let maximum = arr[0];
 
-  visited.add(start);
-  console.log(start);
-
-  for (const neighbor of graph[start]) {
-    dfs(graph, neighbor, visited);
+  for (let i = 1; i < arr.length; i++) {
+    current = Math.max(arr[i], current + arr[i]);
+    maximum = Math.max(maximum, current);
   }
+
+  return maximum;
 }
 ```
 
