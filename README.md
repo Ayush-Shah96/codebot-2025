@@ -2,29 +2,24 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Two Sum
+## 📌 Depth First Search
 
-**Category:** Arrays
+**Category:** Graph Traversal
 
-**Updated:** Thu, 19 Nov 2026 19:58:21 GMT
+**Updated:** Fri, 20 Nov 2026 02:01:25 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function twoSum(nums, target) {
-  const map = new Map();
+function dfs(graph, start, visited = new Set()) {
+  if (visited.has(start)) return;
 
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
+  visited.add(start);
+  console.log(start);
 
-    if (map.has(complement)) {
-      return [map.get(complement), i];
-    }
-
-    map.set(nums[i], i);
+  for (const neighbor of graph[start]) {
+    dfs(graph, neighbor, visited);
   }
-
-  return [];
 }
 ```
 
