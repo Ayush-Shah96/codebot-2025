@@ -2,52 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Dijkstra's Algorithm
+## 📌 Fibonacci
 
-**Category:** Graph
+**Category:** Dynamic Programming
 
-**Updated:** Sat, 21 Nov 2026 18:43:22 GMT
+**Updated:** Sun, 22 Nov 2026 00:58:05 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  for (const node in graph) {
-    distances[node] = Infinity;
+  let prev = 0;
+  let curr = 1;
+
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
 
-  distances[start] = 0;
-
-  while (visited.size < Object.keys(graph).length) {
-    let current = null;
-
-    for (const node in distances) {
-      if (
-        !visited.has(node) &&
-        (current === null || distances[node] < distances[current])
-      ) {
-        current = node;
-      }
-    }
-
-    if (current === null) break;
-
-    visited.add(current);
-
-    for (const neighbor in graph[current]) {
-      const distance =
-        distances[current] + graph[current][neighbor];
-
-      if (distance < distances[neighbor]) {
-        distances[neighbor] = distance;
-      }
-    }
-  }
-
-  return distances;
+  return curr;
 }
 ```
 
