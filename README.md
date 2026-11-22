@@ -2,31 +2,28 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Breadth First Search
+## 📌 Fibonacci
 
-**Category:** Graph Traversal
+**Category:** Dynamic Programming
 
-**Updated:** Sun, 22 Nov 2026 10:44:31 GMT
+**Updated:** Sun, 22 Nov 2026 19:03:43 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function bfs(graph, start) {
-  const queue = [start];
-  const visited = new Set([start]);
+function fibonacci(n) {
+  if (n <= 1) return n;
 
-  while (queue.length > 0) {
-    const node = queue.shift();
+  let prev = 0;
+  let curr = 1;
 
-    console.log(node);
-
-    for (const neighbor of graph[node]) {
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push(neighbor);
-      }
-    }
+  for (let i = 2; i <= n; i++) {
+    const next = prev + curr;
+    prev = curr;
+    curr = next;
   }
+
+  return curr;
 }
 ```
 
