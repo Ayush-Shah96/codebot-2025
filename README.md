@@ -2,31 +2,27 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Quick Sort
+## 📌 Bubble Sort
 
 **Category:** Sorting
 
-**Updated:** Mon, 23 Nov 2026 11:49:58 GMT
+**Updated:** Mon, 23 Nov 2026 23:24:38 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function quickSort(arr) {
-  if (arr.length <= 1) return arr;
+function bubbleSort(arr) {
+  const result = [...arr];
 
-  const pivot = arr[arr.length - 1];
-  const left = [];
-  const right = [];
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length - i - 1; j++) {
+      if (result[j] > result[j + 1]) {
+        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+      }
     }
   }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+  return result;
 }
 ```
 
