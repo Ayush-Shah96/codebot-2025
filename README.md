@@ -2,40 +2,32 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Merge Sort
+## 📌 Binary Search
 
-**Category:** Sorting
+**Category:** Searching
 
-**Updated:** Wed, 25 Nov 2026 03:57:08 GMT
+**Updated:** Wed, 25 Nov 2026 16:49:41 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function mergeSort(arr) {
-  if (arr.length <= 1) return arr;
+function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
 
-  const mid = Math.floor(arr.length / 2);
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
 
-  const left = mergeSort(arr.slice(0, mid));
-  const right = mergeSort(arr.slice(mid));
+    if (arr[mid] === target) return mid;
 
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  const result = [];
-  let i = 0;
-  let j = 0;
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i++]);
+    if (arr[mid] < target) {
+      left = mid + 1;
     } else {
-      result.push(right[j++]);
+      right = mid - 1;
     }
   }
 
-  return [...result, ...left.slice(i), ...right.slice(j)];
+  return -1;
 }
 ```
 
