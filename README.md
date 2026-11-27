@@ -2,32 +2,21 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Binary Search
+## 📌 Greatest Common Divisor
 
-**Category:** Searching
+**Category:** Math
 
-**Updated:** Thu, 26 Nov 2026 20:58:28 GMT
+**Updated:** Fri, 27 Nov 2026 03:34:42 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function binarySearch(arr, target) {
-  let left = 0;
-  let right = arr.length - 1;
-
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-
-    if (arr[mid] === target) return mid;
-
-    if (arr[mid] < target) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
+function gcd(a, b) {
+  while (b !== 0) {
+    [a, b] = [b, a % b];
   }
 
-  return -1;
+  return Math.abs(a);
 }
 ```
 
