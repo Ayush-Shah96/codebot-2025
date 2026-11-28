@@ -2,25 +2,36 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Kadane's Algorithm
+## 📌 Topological Sort
 
-**Category:** Arrays
+**Category:** Graph
 
-**Updated:** Sat, 28 Nov 2026 11:23:09 GMT
+**Updated:** Sat, 28 Nov 2026 19:34:19 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSubarraySum(arr) {
-  let current = arr[0];
-  let maximum = arr[0];
+function topologicalSort(graph) {
+  const visited = new Set();
+  const result = [];
 
-  for (let i = 1; i < arr.length; i++) {
-    current = Math.max(arr[i], current + arr[i]);
-    maximum = Math.max(maximum, current);
+  function dfs(node) {
+    if (visited.has(node)) return;
+
+    visited.add(node);
+
+    for (const neighbor of graph[node] || []) {
+      dfs(neighbor);
+    }
+
+    result.push(node);
   }
 
-  return maximum;
+  for (const node in graph) {
+    dfs(node);
+  }
+
+  return result.reverse();
 }
 ```
 
