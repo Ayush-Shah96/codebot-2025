@@ -2,32 +2,38 @@
 
 > Automatically updated every 3 hours 🤖
 
-## 📌 Sliding Window
+## 📌 Binary Tree Level Order Traversal
 
-**Category:** Arrays
+**Category:** Binary Tree
 
-**Updated:** Fri, 27 Nov 2026 16:11:38 GMT
+**Updated:** Sat, 28 Nov 2026 01:07:41 GMT
 
 ### 💻 JavaScript Implementation
 
 ```javascript
-function maxSumSubarray(arr, k) {
-  if (arr.length < k) return null;
+function levelOrder(root) {
+  if (!root) return [];
 
-  let windowSum = 0;
+  const result = [];
+  const queue = [root];
 
-  for (let i = 0; i < k; i++) {
-    windowSum += arr[i];
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+    const level = [];
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      level.push(node.value);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    result.push(level);
   }
 
-  let maximum = windowSum;
-
-  for (let i = k; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - k];
-    maximum = Math.max(maximum, windowSum);
-  }
-
-  return maximum;
+  return result;
 }
 ```
 
